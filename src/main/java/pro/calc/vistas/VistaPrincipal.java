@@ -1,9 +1,13 @@
 package pro.calc.vistas;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 public class VistaPrincipal extends javax.swing.JFrame {
 
     public VistaPrincipal() {
         initComponents();
+        //setIconImage(getIconImage());   
         setVisible(true);
         setLocationRelativeTo(null);
     }
@@ -31,6 +35,24 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        barraMenu = new javax.swing.JMenuBar();
+        archivoMenu = new javax.swing.JMenu();
+        exportarItem = new javax.swing.JMenuItem();
+        tamanoMenu = new javax.swing.JMenu();
+        maxItem = new javax.swing.JMenuItem();
+        minItem = new javax.swing.JMenuItem();
+        opcionesItem = new javax.swing.JMenuItem();
+        avanzadosMenu = new javax.swing.JMenu();
+        areasMenu = new javax.swing.JMenu();
+        cuadradoItem = new javax.swing.JMenuItem();
+        trianguloItem = new javax.swing.JMenuItem();
+        circunferenciaItem = new javax.swing.JMenuItem();
+        volumenMenu = new javax.swing.JMenu();
+        cuboItem = new javax.swing.JMenuItem();
+        prismaItem = new javax.swing.JMenuItem();
+        esferaItem = new javax.swing.JMenuItem();
+        cilindroItem = new javax.swing.JMenuItem();
+        conversorItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calculadora Pro");
@@ -192,6 +214,84 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
+        archivoMenu.setText("Archivo");
+
+        exportarItem.setText("Exportar txt");
+        exportarItem.setIconTextGap(0);
+        archivoMenu.add(exportarItem);
+
+        tamanoMenu.setText("Tamaño");
+        tamanoMenu.setIconTextGap(0);
+
+        maxItem.setText("Max");
+        maxItem.setIconTextGap(0);
+        tamanoMenu.add(maxItem);
+
+        minItem.setText("Min");
+        minItem.setIconTextGap(0);
+        tamanoMenu.add(minItem);
+
+        archivoMenu.add(tamanoMenu);
+
+        opcionesItem.setText("Opciones...");
+        opcionesItem.setIconTextGap(0);
+        archivoMenu.add(opcionesItem);
+
+        barraMenu.add(archivoMenu);
+
+        avanzadosMenu.setText("Calculos avanzados");
+
+        areasMenu.setText("Areas");
+        areasMenu.setIconTextGap(0);
+
+        cuadradoItem.setText("Cuadrado");
+        cuadradoItem.setIconTextGap(0);
+        areasMenu.add(cuadradoItem);
+
+        trianguloItem.setText("Triangulo");
+        trianguloItem.setIconTextGap(0);
+        areasMenu.add(trianguloItem);
+
+        circunferenciaItem.setText("Circunferencia");
+        circunferenciaItem.setIconTextGap(0);
+        areasMenu.add(circunferenciaItem);
+
+        avanzadosMenu.add(areasMenu);
+
+        volumenMenu.setText("Volumen");
+        volumenMenu.setIconTextGap(0);
+
+        cuboItem.setText("Cubo");
+        cuboItem.setIconTextGap(0);
+        volumenMenu.add(cuboItem);
+
+        prismaItem.setText("Prisma");
+        prismaItem.setIconTextGap(0);
+        prismaItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prismaItemActionPerformed(evt);
+            }
+        });
+        volumenMenu.add(prismaItem);
+
+        esferaItem.setText("Esfera");
+        esferaItem.setIconTextGap(0);
+        volumenMenu.add(esferaItem);
+
+        cilindroItem.setText("Cilindro");
+        cilindroItem.setIconTextGap(0);
+        volumenMenu.add(cilindroItem);
+
+        avanzadosMenu.add(volumenMenu);
+
+        conversorItem.setText("Conversor...");
+        conversorItem.setIconTextGap(0);
+        avanzadosMenu.add(conversorItem);
+
+        barraMenu.add(avanzadosMenu);
+
+        setJMenuBar(barraMenu);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -213,7 +313,23 @@ public class VistaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    @Override
+    public Image getIconImage() {
+        //no va
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("resources/icono.png"));
+        return retValue;
+    }
+
+
+    private void prismaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prismaItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prismaItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu archivoMenu;
+    private javax.swing.JMenu areasMenu;
+    private javax.swing.JMenu avanzadosMenu;
+    private javax.swing.JMenuBar barraMenu;
     private javax.swing.JButton btn1;
     private javax.swing.JButton btn2;
     private javax.swing.JButton btn3;
@@ -223,6 +339,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn7;
     private javax.swing.JButton btn8;
     private javax.swing.JButton btn9;
+    private javax.swing.JMenuItem cilindroItem;
+    private javax.swing.JMenuItem circunferenciaItem;
+    private javax.swing.JMenuItem conversorItem;
+    private javax.swing.JMenuItem cuadradoItem;
+    private javax.swing.JMenuItem cuboItem;
+    private javax.swing.JMenuItem esferaItem;
+    private javax.swing.JMenuItem exportarItem;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -230,8 +353,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JMenuItem maxItem;
+    private javax.swing.JMenuItem minItem;
+    private javax.swing.JMenuItem opcionesItem;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelVisor;
+    private javax.swing.JMenuItem prismaItem;
+    private javax.swing.JMenu tamanoMenu;
+    private javax.swing.JMenuItem trianguloItem;
     private javax.swing.JTextField visorInpt;
+    private javax.swing.JMenu volumenMenu;
     // End of variables declaration//GEN-END:variables
 }
