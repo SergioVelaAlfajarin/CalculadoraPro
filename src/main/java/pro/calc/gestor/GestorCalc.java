@@ -8,6 +8,6 @@ package pro.calc.gestor;
  *
  * @author pablo
  */
-public class GestorCalc {
+public abstract class GestorCalc {
     
 }
