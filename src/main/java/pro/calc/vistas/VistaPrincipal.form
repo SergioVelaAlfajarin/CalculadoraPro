@@ -23,13 +23,13 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="maxItem">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Max"/>
+                    <Property name="text" type="java.lang.String" value="Maximo"/>
                     <Property name="iconTextGap" type="int" value="0"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="minItem">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Min"/>
+                    <Property name="text" type="java.lang.String" value="Minimo"/>
                     <Property name="iconTextGap" type="int" value="0"/>
                   </Properties>
                 </MenuItem>
@@ -38,6 +38,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Limpiar"/>
+                <Property name="iconTextGap" type="int" value="0"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="opcionesItem">
@@ -45,6 +46,15 @@
                 <Property name="text" type="java.lang.String" value="Opciones..."/>
                 <Property name="iconTextGap" type="int" value="0"/>
               </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="salirItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Salir"/>
+                <Property name="iconTextGap" type="int" value="0"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salirItemActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -108,9 +118,6 @@
                     <Property name="text" type="java.lang.String" value="Prisma"/>
                     <Property name="iconTextGap" type="int" value="0"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="prismaItemActionPerformed"/>
-                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="esferaItem">
                   <Properties>
@@ -143,11 +150,13 @@
         <Menu class="javax.swing.JMenu" name="ayudaMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ayuda"/>
+            <Property name="iconTextGap" type="int" value="0"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="acercaDeItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Acerca de..."/>
+                <Property name="iconTextGap" type="int" value="0"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -169,6 +178,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosed"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>

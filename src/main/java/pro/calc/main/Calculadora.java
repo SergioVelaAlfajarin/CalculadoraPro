@@ -1,6 +1,9 @@
 package pro.calc.main;
 
+import java.net.URL;
 import java.util.Arrays;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import pro.calc.vistas.VistaPrincipal;
 
 public class Calculadora {
