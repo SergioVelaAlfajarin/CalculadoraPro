@@ -1,14 +1,17 @@
 package pro.calc.vistas;
 
-import java.awt.Image;
-import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import pro.calc.exception.CalcException;
+import pro.calc.gestor.GestorCalc;
 
 public class VistaPrincipal extends javax.swing.JFrame {
 
+    public void muestraWarning(Exception e) {
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+    }
+
     public VistaPrincipal() {
         initComponents();
-        //setIconImage(getIconImage());
         setVisible(true);
         setLocationRelativeTo(null);
     }
@@ -44,6 +47,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         minItem = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         opcionesItem = new javax.swing.JMenuItem();
+        salirItem = new javax.swing.JMenuItem();
         avanzadosMenu = new javax.swing.JMenu();
         areasMenu = new javax.swing.JMenu();
         cuadradoItem = new javax.swing.JMenuItem();
@@ -63,6 +67,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("FramePrincipal"); // NOI18N
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         visorInpt.setBackground(new java.awt.Color(204, 204, 204));
         visorInpt.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -307,22 +316,32 @@ public class VistaPrincipal extends javax.swing.JFrame {
         tamanoMenu.setText("Tamaño");
         tamanoMenu.setIconTextGap(0);
 
-        maxItem.setText("Max");
+        maxItem.setText("Maximo");
         maxItem.setIconTextGap(0);
         tamanoMenu.add(maxItem);
 
-        minItem.setText("Min");
+        minItem.setText("Minimo");
         minItem.setIconTextGap(0);
         tamanoMenu.add(minItem);
 
         archivoMenu.add(tamanoMenu);
 
         jMenuItem1.setText("Limpiar");
+        jMenuItem1.setIconTextGap(0);
         archivoMenu.add(jMenuItem1);
 
         opcionesItem.setText("Opciones...");
         opcionesItem.setIconTextGap(0);
         archivoMenu.add(opcionesItem);
+
+        salirItem.setText("Salir");
+        salirItem.setIconTextGap(0);
+        salirItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirItemActionPerformed(evt);
+            }
+        });
+        archivoMenu.add(salirItem);
 
         barraMenu.add(archivoMenu);
 
@@ -374,11 +393,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         prismaItem.setText("Prisma");
         prismaItem.setIconTextGap(0);
-        prismaItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prismaItemActionPerformed(evt);
-            }
-        });
         volumenMenu.add(prismaItem);
 
         esferaItem.setText("Esfera");
@@ -408,8 +422,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         barraMenu.add(avanzadosMenu);
 
         ayudaMenu.setText("Ayuda");
+        ayudaMenu.setIconTextGap(0);
 
         acercaDeItem.setText("Acerca de...");
+        acercaDeItem.setIconTextGap(0);
         ayudaMenu.add(acercaDeItem);
 
         barraMenu.add(ayudaMenu);
@@ -437,55 +453,25 @@ public class VistaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    @Override
-    public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().
-                getImage(ClassLoader.getSystemResource("resources/icono.jpg"));
-
-        return retValue;
-    }
-
-    //-------------------------- VOLUMEN ---------------------------------------
     private void prismaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prismaItemActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_prismaItemActionPerformed
 
-    
-    //------------------------------------ AREAS -------------------------------
     private void cuadradoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuadradoItemActionPerformed
-
-        String ladoUno = JOptionPane.showInputDialog(this, "Introduzca un lado.");
-        String ladoDos = JOptionPane.showInputDialog(this, "Introduzca el segundo lado.");
-
         try {
-            Double.parseDouble(ladoUno);
-            Double.parseDouble(ladoDos);
-
-            int lado1 = Integer.parseInt(ladoUno);
-            int lado2 = Integer.parseInt(ladoDos);
-
-            int resultado = lado1 * lado2;
-
-            String resultadoR = resultado + "";
-            visorInpt.setText(ladoUno + "*" + ladoDos + "=" + resultadoR);
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "No es un numero.");
+            String lado = JOptionPane.showInputDialog(this, "Introduzca el lado.");
+            visorInpt.setText(GestorCalc.calculaAreaCuadrado(lado));
+        } catch (CalcException e) {
+            muestraWarning(e);
         }
-
-
     }//GEN-LAST:event_cuadradoItemActionPerformed
 
-    
-    //--------------------------- = --------------------------------------------
     private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
         String a = visorInpt.getText();
         visorInpt.setText(a + "=");
-        //Realizara la operacion mostrando el resultado
+        //TODO LA OPERACION
     }//GEN-LAST:event_btnIgualActionPerformed
 
-    
-    //-------------------------- AREAS -----------------------------------------
     private void trianguloItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trianguloItemActionPerformed
 
         String ladoUno = JOptionPane.showInputDialog(this, "Introduzca la base.");
@@ -535,7 +521,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     //--------------------------- VOLUMENES ------------------------------------
     private void cuboItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuboItemActionPerformed
-      
+
         String ladoUno = JOptionPane.showInputDialog(this, "Introduzca el lado.");
 
         try {
@@ -553,13 +539,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No es un numero.");
         }
 
-
     }//GEN-LAST:event_cuboItemActionPerformed
 
-    //--------------------------- BOTONES --------------------------------------
-
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-
         String a = visorInpt.getText();
         visorInpt.setText(a + "1");
     }//GEN-LAST:event_btn1ActionPerformed
@@ -607,7 +589,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void btnSumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSumaActionPerformed
         String a = visorInpt.getText();
         visorInpt.setText(a + "+");
-
     }//GEN-LAST:event_btnSumaActionPerformed
 
     private void btnRestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaActionPerformed
@@ -633,11 +614,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void btnParentesis2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnParentesis2ActionPerformed
         String a = visorInpt.getText();
         visorInpt.setText(a + ")");
-
     }//GEN-LAST:event_btnParentesis2ActionPerformed
 
-    //------------------------ VOLUMEN -----------------------------------------
-    
     private void esferaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esferaItemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_esferaItemActionPerformed
@@ -645,6 +623,20 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void cilindroItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cilindroItemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cilindroItemActionPerformed
+
+    //salir botones
+
+    private void salirItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirItemActionPerformed
+        dispose();
+        //cerrar bbdd
+        System.exit(0);
+    }//GEN-LAST:event_salirItemActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        dispose();
+        //cerrar bbdd
+        System.exit(0);
+    }//GEN-LAST:event_formWindowClosed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem acercaDeItem;
@@ -683,6 +675,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelVisor;
     private javax.swing.JMenuItem prismaItem;
+    private javax.swing.JMenuItem salirItem;
     private javax.swing.JMenu tamanoMenu;
     private javax.swing.JMenuItem trianguloItem;
     private javax.swing.JTextField visorInpt;
