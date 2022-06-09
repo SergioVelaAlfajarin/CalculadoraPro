@@ -2,12 +2,13 @@ package pro.calc.vistas;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 public class VistaPrincipal extends javax.swing.JFrame {
 
     public VistaPrincipal() {
         initComponents();
-        //setIconImage(getIconImage());   
+        //setIconImage(getIconImage());
         setVisible(true);
         setLocationRelativeTo(null);
     }
@@ -85,64 +86,144 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         btn1.setText("1");
         btn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn1ActionPerformed(evt);
+            }
+        });
 
         btn2.setText("2");
         btn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn2ActionPerformed(evt);
+            }
+        });
 
         btn3.setText("3");
         btn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn3ActionPerformed(evt);
+            }
+        });
 
         btn4.setText("4");
         btn4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn4.setPreferredSize(new java.awt.Dimension(50, 50));
+        btn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn4ActionPerformed(evt);
+            }
+        });
 
         btn5.setText("5");
         btn5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn5.setPreferredSize(new java.awt.Dimension(50, 50));
+        btn5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn5ActionPerformed(evt);
+            }
+        });
 
         btn6.setText("6");
         btn6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn6.setPreferredSize(new java.awt.Dimension(50, 50));
+        btn6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn6ActionPerformed(evt);
+            }
+        });
 
         btn7.setText("7");
         btn7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn7.setPreferredSize(new java.awt.Dimension(50, 50));
+        btn7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn7ActionPerformed(evt);
+            }
+        });
 
         btn8.setText("8");
         btn8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn8.setPreferredSize(new java.awt.Dimension(50, 50));
+        btn8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn8ActionPerformed(evt);
+            }
+        });
 
         btn9.setText("9");
         btn9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn9.setPreferredSize(new java.awt.Dimension(50, 50));
+        btn9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn9ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("(");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setPreferredSize(new java.awt.Dimension(50, 50));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("+");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setPreferredSize(new java.awt.Dimension(50, 50));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("-");
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setPreferredSize(new java.awt.Dimension(50, 50));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("/");
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.setPreferredSize(new java.awt.Dimension(50, 50));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("x");
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.setPreferredSize(new java.awt.Dimension(50, 50));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("=");
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.setPreferredSize(new java.awt.Dimension(50, 50));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText(")");
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.setPreferredSize(new java.awt.Dimension(50, 50));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
@@ -246,14 +327,29 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         cuadradoItem.setText("Cuadrado");
         cuadradoItem.setIconTextGap(0);
+        cuadradoItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cuadradoItemActionPerformed(evt);
+            }
+        });
         areasMenu.add(cuadradoItem);
 
         trianguloItem.setText("Triangulo");
         trianguloItem.setIconTextGap(0);
+        trianguloItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trianguloItemActionPerformed(evt);
+            }
+        });
         areasMenu.add(trianguloItem);
 
         circunferenciaItem.setText("Circunferencia");
         circunferenciaItem.setIconTextGap(0);
+        circunferenciaItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                circunferenciaItemActionPerformed(evt);
+            }
+        });
         areasMenu.add(circunferenciaItem);
 
         avanzadosMenu.add(areasMenu);
@@ -263,6 +359,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         cuboItem.setText("Cubo");
         cuboItem.setIconTextGap(0);
+        cuboItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cuboItemActionPerformed(evt);
+            }
+        });
         volumenMenu.add(cuboItem);
 
         prismaItem.setText("Prisma");
@@ -315,8 +416,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     @Override
     public Image getIconImage() {
-        //no va
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("resources/icono.png"));
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("resources/icono.jpg"));
+
         return retValue;
     }
 
@@ -324,6 +426,149 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void prismaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prismaItemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_prismaItemActionPerformed
+
+    private void cuadradoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuadradoItemActionPerformed
+        //Gestionar exceptiones
+        String ladoUno = JOptionPane.showInputDialog(this, "Introduzca un lado.");
+        String ladoDos = JOptionPane.showInputDialog(this, "Introduzca el segundo lado.");
+
+        int lado1 = Integer.parseInt(ladoUno);
+        int lado2 = Integer.parseInt(ladoDos);
+        int resultado = lado1 * lado2;
+        String resultadoR = resultado + "";
+        visorInpt.setText(ladoUno + "*" + ladoDos + "=" + resultadoR);
+    }//GEN-LAST:event_cuadradoItemActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        String a = visorInpt.getText();
+        visorInpt.setText(a + "=");
+        //Realizara la operacion mostrando el resultado
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void trianguloItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trianguloItemActionPerformed
+        //Gestionar exceptiones
+        String ladoUno = JOptionPane.showInputDialog(this, "Introduzca la base.");
+        String ladoDos = JOptionPane.showInputDialog(this, "Introduzca la altura.");
+
+        int lado1 = Integer.parseInt(ladoUno);
+        int lado2 = Integer.parseInt(ladoDos);
+
+        int resultado = lado1 * lado2 / 2;
+
+        String resultadoR = resultado + "";
+        visorInpt.setText(ladoUno + "*" + ladoDos + "/2" + "=" + resultadoR);
+
+
+    }//GEN-LAST:event_trianguloItemActionPerformed
+
+    private void circunferenciaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_circunferenciaItemActionPerformed
+        //Gestionar exceptiones
+        String ladoUno = JOptionPane.showInputDialog(this, "Introduzca el radio.");
+
+        int lado1 = Integer.parseInt(ladoUno);
+
+        int resultadoa = lado1 * 2;
+        int resultadob = (int) (resultadoa * 3.14);
+
+        String resultadoR = resultadob + "";
+
+        visorInpt.setText(ladoUno + "*" + ladoUno + "*3.14" + "=" + resultadoR);
+
+
+    }//GEN-LAST:event_circunferenciaItemActionPerformed
+
+    private void cuboItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuboItemActionPerformed
+        //Gestionar exceptiones
+        String ladoUno = JOptionPane.showInputDialog(this, "Introduzca el lado.");
+
+        int lado1 = Integer.parseInt(ladoUno);
+
+        int resultadoa = lado1 * lado1 * lado1;
+
+        String resultadoR = resultadoa + "";
+
+        visorInpt.setText(ladoUno + "*" + ladoUno + "*" + ladoUno + "=" + resultadoR);
+
+
+    }//GEN-LAST:event_cuboItemActionPerformed
+
+    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
+
+        String a = visorInpt.getText();
+        visorInpt.setText(a + "1");
+    }//GEN-LAST:event_btn1ActionPerformed
+
+    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+        String a = visorInpt.getText();
+        visorInpt.setText(a + "2");
+    }//GEN-LAST:event_btn2ActionPerformed
+
+    private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
+        String a = visorInpt.getText();
+        visorInpt.setText(a + "3");
+    }//GEN-LAST:event_btn3ActionPerformed
+
+    private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
+        String a = visorInpt.getText();
+        visorInpt.setText(a + "4");
+    }//GEN-LAST:event_btn4ActionPerformed
+
+    private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
+        String a = visorInpt.getText();
+        visorInpt.setText(a + "5");
+    }//GEN-LAST:event_btn5ActionPerformed
+
+    private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
+        String a = visorInpt.getText();
+        visorInpt.setText(a + "6");
+    }//GEN-LAST:event_btn6ActionPerformed
+
+    private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
+        String a = visorInpt.getText();
+        visorInpt.setText(a + "7");
+    }//GEN-LAST:event_btn7ActionPerformed
+
+    private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
+        String a = visorInpt.getText();
+        visorInpt.setText(a + "8");
+    }//GEN-LAST:event_btn8ActionPerformed
+
+    private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
+        String a = visorInpt.getText();
+        visorInpt.setText(a + "9");
+    }//GEN-LAST:event_btn9ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String a = visorInpt.getText();
+        visorInpt.setText(a + "+");
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        String a = visorInpt.getText();
+        visorInpt.setText(a + "-");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        String a = visorInpt.getText();
+        visorInpt.setText(a + "/");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        String a = visorInpt.getText();
+        visorInpt.setText(a + "x");
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String a = visorInpt.getText();
+        visorInpt.setText(a + "(");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        String a = visorInpt.getText();
+        visorInpt.setText(a + ")");
+
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu archivoMenu;
