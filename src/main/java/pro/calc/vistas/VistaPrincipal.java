@@ -328,6 +328,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jMenuItem1.setText("Limpiar");
         jMenuItem1.setIconTextGap(0);
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         archivoMenu.add(jMenuItem1);
 
         opcionesItem.setText("Opciones...");
@@ -474,66 +479,35 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void trianguloItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trianguloItemActionPerformed
 
-        String ladoUno = JOptionPane.showInputDialog(this, "Introduzca la base.");
-        String ladoDos = JOptionPane.showInputDialog(this, "Introduzca la altura.");
-
         try {
-            Double.parseDouble(ladoUno);
-            Double.parseDouble(ladoDos);
-
-            int lado1 = Integer.parseInt(ladoUno);
-            int lado2 = Integer.parseInt(ladoDos);
-
-            int resultado = lado1 * lado2 / 2;
-
-            String resultadoR = resultado + "";
-            visorInpt.setText(ladoUno + "*" + ladoDos + "/2" + "=" + resultadoR);
-
+            String lado = JOptionPane.showInputDialog(this, "Introduzca la base.");
+            String altura = JOptionPane.showInputDialog(this, "Introduzca la altura.");
+            visorInpt.setText(GestorCalc.calculaAreaTriangulo(lado, altura));
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "No es un numero.");
+            muestraWarning(e);
         }
-
 
     }//GEN-LAST:event_trianguloItemActionPerformed
 
     private void circunferenciaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_circunferenciaItemActionPerformed
-
-        String ladoUno = JOptionPane.showInputDialog(this, "Introduzca el radio.");
-
+        //No funciona
         try {
-            Double.parseDouble(ladoUno);
+            String area = JOptionPane.showInputDialog(this, "Introduzca el radio.");
+            visorInpt.setText(GestorCalc.calculaAreaCircunferencia(area));
 
-            int lado1 = Integer.parseInt(ladoUno);
-
-            int resultadoa = lado1 * 2;
-            int resultadob = (int) (resultadoa * 3.14);
-
-            String resultadoR = resultadob + "";
-
-            visorInpt.setText(ladoUno + "*" + ladoUno + "*3.14" + "=" + resultadoR);
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "No es un numero.");
+        } catch (CalcException e) {
+            muestraWarning(e);
         }
 
 
     }//GEN-LAST:event_circunferenciaItemActionPerformed
 
-    //--------------------------- VOLUMENES ------------------------------------
     private void cuboItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuboItemActionPerformed
 
-        String ladoUno = JOptionPane.showInputDialog(this, "Introduzca el lado.");
-
         try {
-            Double.parseDouble(ladoUno);
+            String lado = JOptionPane.showInputDialog(this, "Introduzca el lado.");
 
-            int lado1 = Integer.parseInt(ladoUno);
-
-            int resultadoa = lado1 * lado1 * lado1;
-
-            String resultadoR = resultadoa + "";
-
-            visorInpt.setText(ladoUno + "*" + ladoUno + "*" + ladoUno + "=" + resultadoR);
+            visorInpt.setText(GestorCalc.calculaVolumenCubo(lado));
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "No es un numero.");
@@ -637,6 +611,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         //cerrar bbdd
         System.exit(0);
     }//GEN-LAST:event_formWindowClosed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+
+        visorInpt.setText("");
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem acercaDeItem;
