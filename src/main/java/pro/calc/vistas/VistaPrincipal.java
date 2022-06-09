@@ -2,6 +2,10 @@ package pro.calc.vistas;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
+import java.net.URL;
+import javax.swing.ImageIcon;
+import pro.calc.main.Calculadora;
 
 public class VistaPrincipal extends javax.swing.JFrame {
 
@@ -10,6 +14,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
         //setIconImage(getIconImage());   
         setVisible(true);
         setLocationRelativeTo(null);
+    }
+
+    @Override
+    public Image getIconImage() { 
+        URL iconURL = getClass().getResource("pro/calc/resources/icono.png");
+        ImageIcon icon = new ImageIcon(iconURL);
+        return icon.getImage();
+        //Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("pro/calc/resources/icono.png"));
+        //return retValue;
     }
 
     @SuppressWarnings("unchecked")
@@ -267,11 +280,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         prismaItem.setText("Prisma");
         prismaItem.setIconTextGap(0);
-        prismaItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prismaItemActionPerformed(evt);
-            }
-        });
         volumenMenu.add(prismaItem);
 
         esferaItem.setText("Esfera");
@@ -312,18 +320,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    @Override
-    public Image getIconImage() {
-        //no va
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("resources/icono.png"));
-        return retValue;
-    }
-
-
-    private void prismaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prismaItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prismaItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu archivoMenu;
