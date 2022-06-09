@@ -43,6 +43,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         maxItem = new javax.swing.JMenuItem();
         minItem = new javax.swing.JMenuItem();
         opcionesItem = new javax.swing.JMenuItem();
+        acercaDeItem = new javax.swing.JMenuItem();
         avanzadosMenu = new javax.swing.JMenu();
         areasMenu = new javax.swing.JMenu();
         cuadradoItem = new javax.swing.JMenuItem();
@@ -318,6 +319,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         opcionesItem.setIconTextGap(0);
         archivoMenu.add(opcionesItem);
 
+        acercaDeItem.setText("Acerca de...");
+        archivoMenu.add(acercaDeItem);
+
         barraMenu.add(archivoMenu);
 
         avanzadosMenu.setText("Calculos avanzados");
@@ -377,10 +381,20 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         esferaItem.setText("Esfera");
         esferaItem.setIconTextGap(0);
+        esferaItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                esferaItemActionPerformed(evt);
+            }
+        });
         volumenMenu.add(esferaItem);
 
         cilindroItem.setText("Cilindro");
         cilindroItem.setIconTextGap(0);
+        cilindroItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cilindroItemActionPerformed(evt);
+            }
+        });
         volumenMenu.add(cilindroItem);
 
         avanzadosMenu.add(volumenMenu);
@@ -422,75 +436,118 @@ public class VistaPrincipal extends javax.swing.JFrame {
         return retValue;
     }
 
-
+    //-------------------------- VOLUMEN ---------------------------------------
     private void prismaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prismaItemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_prismaItemActionPerformed
 
+    
+    //------------------------------------ AREAS -------------------------------
     private void cuadradoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuadradoItemActionPerformed
-        //Gestionar exceptiones
+
         String ladoUno = JOptionPane.showInputDialog(this, "Introduzca un lado.");
         String ladoDos = JOptionPane.showInputDialog(this, "Introduzca el segundo lado.");
 
-        int lado1 = Integer.parseInt(ladoUno);
-        int lado2 = Integer.parseInt(ladoDos);
-        int resultado = lado1 * lado2;
-        String resultadoR = resultado + "";
-        visorInpt.setText(ladoUno + "*" + ladoDos + "=" + resultadoR);
+        try {
+            Double.parseDouble(ladoUno);
+            Double.parseDouble(ladoDos);
+
+            int lado1 = Integer.parseInt(ladoUno);
+            int lado2 = Integer.parseInt(ladoDos);
+
+            int resultado = lado1 * lado2;
+
+            String resultadoR = resultado + "";
+            visorInpt.setText(ladoUno + "*" + ladoDos + "=" + resultadoR);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "No es un numero.");
+        }
+
+
     }//GEN-LAST:event_cuadradoItemActionPerformed
 
+    
+    //--------------------------- = --------------------------------------------
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         String a = visorInpt.getText();
         visorInpt.setText(a + "=");
         //Realizara la operacion mostrando el resultado
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    
+    //-------------------------- AREAS -----------------------------------------
     private void trianguloItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trianguloItemActionPerformed
-        //Gestionar exceptiones
+
         String ladoUno = JOptionPane.showInputDialog(this, "Introduzca la base.");
         String ladoDos = JOptionPane.showInputDialog(this, "Introduzca la altura.");
 
-        int lado1 = Integer.parseInt(ladoUno);
-        int lado2 = Integer.parseInt(ladoDos);
+        try {
+            Double.parseDouble(ladoUno);
+            Double.parseDouble(ladoDos);
 
-        int resultado = lado1 * lado2 / 2;
+            int lado1 = Integer.parseInt(ladoUno);
+            int lado2 = Integer.parseInt(ladoDos);
 
-        String resultadoR = resultado + "";
-        visorInpt.setText(ladoUno + "*" + ladoDos + "/2" + "=" + resultadoR);
+            int resultado = lado1 * lado2 / 2;
+
+            String resultadoR = resultado + "";
+            visorInpt.setText(ladoUno + "*" + ladoDos + "/2" + "=" + resultadoR);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "No es un numero.");
+        }
 
 
     }//GEN-LAST:event_trianguloItemActionPerformed
 
     private void circunferenciaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_circunferenciaItemActionPerformed
-        //Gestionar exceptiones
+
         String ladoUno = JOptionPane.showInputDialog(this, "Introduzca el radio.");
 
-        int lado1 = Integer.parseInt(ladoUno);
+        try {
+            Double.parseDouble(ladoUno);
 
-        int resultadoa = lado1 * 2;
-        int resultadob = (int) (resultadoa * 3.14);
+            int lado1 = Integer.parseInt(ladoUno);
 
-        String resultadoR = resultadob + "";
+            int resultadoa = lado1 * 2;
+            int resultadob = (int) (resultadoa * 3.14);
 
-        visorInpt.setText(ladoUno + "*" + ladoUno + "*3.14" + "=" + resultadoR);
+            String resultadoR = resultadob + "";
+
+            visorInpt.setText(ladoUno + "*" + ladoUno + "*3.14" + "=" + resultadoR);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "No es un numero.");
+        }
 
 
     }//GEN-LAST:event_circunferenciaItemActionPerformed
 
+    //--------------------------- VOLUMENES ------------------------------------
     private void cuboItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuboItemActionPerformed
-        //Gestionar exceptiones
+      
         String ladoUno = JOptionPane.showInputDialog(this, "Introduzca el lado.");
 
-        int lado1 = Integer.parseInt(ladoUno);
+        try {
+            Double.parseDouble(ladoUno);
 
-        int resultadoa = lado1 * lado1 * lado1;
+            int lado1 = Integer.parseInt(ladoUno);
 
-        String resultadoR = resultadoa + "";
+            int resultadoa = lado1 * lado1 * lado1;
 
-        visorInpt.setText(ladoUno + "*" + ladoUno + "*" + ladoUno + "=" + resultadoR);
+            String resultadoR = resultadoa + "";
+
+            visorInpt.setText(ladoUno + "*" + ladoUno + "*" + ladoUno + "=" + resultadoR);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "No es un numero.");
+        }
 
 
     }//GEN-LAST:event_cuboItemActionPerformed
+
+    //--------------------------- BOTONES --------------------------------------
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
 
@@ -570,7 +627,18 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    //------------------------ VOLUMEN -----------------------------------------
+    
+    private void esferaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esferaItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_esferaItemActionPerformed
+
+    private void cilindroItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cilindroItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cilindroItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem acercaDeItem;
     private javax.swing.JMenu archivoMenu;
     private javax.swing.JMenu areasMenu;
     private javax.swing.JMenu avanzadosMenu;

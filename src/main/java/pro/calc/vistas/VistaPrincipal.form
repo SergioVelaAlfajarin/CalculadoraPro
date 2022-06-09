@@ -41,6 +41,11 @@
                 <Property name="iconTextGap" type="int" value="0"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="acercaDeItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Acerca de..."/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="avanzadosMenu">
@@ -112,12 +117,18 @@
                     <Property name="text" type="java.lang.String" value="Esfera"/>
                     <Property name="iconTextGap" type="int" value="0"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="esferaItemActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="cilindroItem">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cilindro"/>
                     <Property name="iconTextGap" type="int" value="0"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cilindroItemActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
