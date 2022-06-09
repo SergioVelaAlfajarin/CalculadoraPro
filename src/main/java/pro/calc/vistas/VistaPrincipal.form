@@ -1,6 +1,125 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Menu class="javax.swing.JMenuBar" name="barraMenu">
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="archivoMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Archivo"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="exportarItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Exportar txt"/>
+                <Property name="iconTextGap" type="int" value="0"/>
+              </Properties>
+            </MenuItem>
+            <Menu class="javax.swing.JMenu" name="tamanoMenu">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tama&#xf1;o"/>
+                <Property name="iconTextGap" type="int" value="0"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="maxItem">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Max"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="minItem">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Min"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <MenuItem class="javax.swing.JMenuItem" name="opcionesItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Opciones..."/>
+                <Property name="iconTextGap" type="int" value="0"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="avanzadosMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Calculos avanzados"/>
+          </Properties>
+          <SubComponents>
+            <Menu class="javax.swing.JMenu" name="areasMenu">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Areas"/>
+                <Property name="iconTextGap" type="int" value="0"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="cuadradoItem">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Cuadrado"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="trianguloItem">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Triangulo"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="circunferenciaItem">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Circunferencia"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="volumenMenu">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Volumen"/>
+                <Property name="iconTextGap" type="int" value="0"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="cuboItem">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Cubo"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="prismaItem">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Prisma"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="prismaItemActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="esferaItem">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Esfera"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="cilindroItem">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Cilindro"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <MenuItem class="javax.swing.JMenuItem" name="conversorItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Conversor..."/>
+                <Property name="iconTextGap" type="int" value="0"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+      </SubComponents>
+    </Menu>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Calculadora Pro"/>
@@ -11,6 +130,7 @@
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="barraMenu"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
