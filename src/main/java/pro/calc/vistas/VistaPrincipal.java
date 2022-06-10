@@ -14,6 +14,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
+        visorInpt.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -23,6 +24,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         panelVisor = new javax.swing.JPanel();
         visorInpt = new javax.swing.JTextField();
         panelPrincipal = new javax.swing.JPanel();
+        btn0 = new javax.swing.JButton();
         btn1 = new javax.swing.JButton();
         btn2 = new javax.swing.JButton();
         btn3 = new javax.swing.JButton();
@@ -32,20 +34,22 @@ public class VistaPrincipal extends javax.swing.JFrame {
         btn7 = new javax.swing.JButton();
         btn8 = new javax.swing.JButton();
         btn9 = new javax.swing.JButton();
-        btnParentesis1 = new javax.swing.JButton();
         btnSuma = new javax.swing.JButton();
         btnResta = new javax.swing.JButton();
         btnDividir = new javax.swing.JButton();
         btnMultiplicar = new javax.swing.JButton();
         btnIgual = new javax.swing.JButton();
+        btnComa = new javax.swing.JButton();
+        btnParentesis1 = new javax.swing.JButton();
         btnParentesis2 = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
+        btnBorrarTodo = new javax.swing.JButton();
         barraMenu = new javax.swing.JMenuBar();
         archivoMenu = new javax.swing.JMenu();
         exportarItem = new javax.swing.JMenuItem();
         tamanoMenu = new javax.swing.JMenu();
         maxItem = new javax.swing.JMenuItem();
         minItem = new javax.swing.JMenuItem();
-        limpiarItem = new javax.swing.JMenuItem();
         opcionesItem = new javax.swing.JMenuItem();
         salirItem = new javax.swing.JMenuItem();
         avanzadosMenu = new javax.swing.JMenu();
@@ -55,7 +59,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         circunferenciaItem = new javax.swing.JMenuItem();
         volumenMenu = new javax.swing.JMenu();
         cuboItem = new javax.swing.JMenuItem();
-        prismaItem = new javax.swing.JMenuItem();
         esferaItem = new javax.swing.JMenuItem();
         cilindroItem = new javax.swing.JMenuItem();
         conversorItem = new javax.swing.JMenuItem();
@@ -74,7 +77,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         });
 
         visorInpt.setBackground(new java.awt.Color(204, 204, 204));
-        visorInpt.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        visorInpt.setFont(new java.awt.Font("Cascadia Code", 1, 16)); // NOI18N
         visorInpt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         visorInpt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         visorInpt.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -84,17 +87,26 @@ public class VistaPrincipal extends javax.swing.JFrame {
         panelVisor.setLayout(panelVisorLayout);
         panelVisorLayout.setHorizontalGroup(
             panelVisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVisorLayout.createSequentialGroup()
+            .addGroup(panelVisorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(visorInpt, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(visorInpt, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         panelVisorLayout.setVerticalGroup(
             panelVisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVisorLayout.createSequentialGroup()
-                .addGap(0, 20, Short.MAX_VALUE)
-                .addComponent(visorInpt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(visorInpt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        btn0.setText("0");
+        btn0.setPreferredSize(new java.awt.Dimension(50, 50));
+        btn0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn0ActionPerformed(evt);
+            }
+        });
 
         btn1.setText("1");
         btn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -174,15 +186,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnParentesis1.setText("(");
-        btnParentesis1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnParentesis1.setPreferredSize(new java.awt.Dimension(50, 50));
-        btnParentesis1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnParentesis1ActionPerformed(evt);
-            }
-        });
-
+        btnSuma.setForeground(new java.awt.Color(0, 102, 153));
         btnSuma.setText("+");
         btnSuma.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSuma.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -192,6 +196,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnResta.setForeground(new java.awt.Color(0, 102, 153));
         btnResta.setText("-");
         btnResta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnResta.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -201,6 +206,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnDividir.setForeground(new java.awt.Color(0, 102, 153));
         btnDividir.setText("/");
         btnDividir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDividir.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -210,6 +216,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnMultiplicar.setForeground(new java.awt.Color(0, 102, 153));
         btnMultiplicar.setText("x");
         btnMultiplicar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMultiplicar.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -219,6 +226,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnIgual.setForeground(new java.awt.Color(0, 153, 0));
         btnIgual.setText("=");
         btnIgual.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIgual.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -228,12 +236,50 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnComa.setForeground(new java.awt.Color(0, 102, 153));
+        btnComa.setText(",");
+        btnComa.setPreferredSize(new java.awt.Dimension(50, 50));
+        btnComa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComaActionPerformed(evt);
+            }
+        });
+
+        btnParentesis1.setForeground(new java.awt.Color(0, 102, 153));
+        btnParentesis1.setText("(");
+        btnParentesis1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnParentesis1.setPreferredSize(new java.awt.Dimension(50, 50));
+        btnParentesis1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnParentesis1ActionPerformed(evt);
+            }
+        });
+
+        btnParentesis2.setForeground(new java.awt.Color(0, 102, 153));
         btnParentesis2.setText(")");
         btnParentesis2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnParentesis2.setPreferredSize(new java.awt.Dimension(50, 50));
         btnParentesis2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnParentesis2ActionPerformed(evt);
+            }
+        });
+
+        btnBorrar.setForeground(new java.awt.Color(255, 0, 51));
+        btnBorrar.setText("C");
+        btnBorrar.setPreferredSize(new java.awt.Dimension(50, 50));
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
+
+        btnBorrarTodo.setForeground(new java.awt.Color(255, 0, 51));
+        btnBorrarTodo.setText("CE");
+        btnBorrarTodo.setPreferredSize(new java.awt.Dimension(50, 50));
+        btnBorrarTodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarTodoActionPerformed(evt);
             }
         });
 
@@ -244,19 +290,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnParentesis1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addComponent(btnParentesis2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnIgual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnMultiplicar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBorrarTodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnParentesis1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(panelPrincipalLayout.createSequentialGroup()
                             .addComponent(btn8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
@@ -274,13 +315,25 @@ public class VistaPrincipal extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(btn6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(btnResta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(11, Short.MAX_VALUE))
+                            .addComponent(btnResta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                        .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnComa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnIgual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                        .addComponent(btn0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnParentesis2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnMultiplicar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -302,9 +355,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnParentesis1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMultiplicar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnParentesis2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIgual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnParentesis2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBorrarTodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnComa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         archivoMenu.setText("Archivo");
@@ -326,15 +385,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         tamanoMenu.add(minItem);
 
         archivoMenu.add(tamanoMenu);
-
-        limpiarItem.setText("Limpiar");
-        limpiarItem.setIconTextGap(0);
-        limpiarItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                limpiarItemActionPerformed(evt);
-            }
-        });
-        archivoMenu.add(limpiarItem);
 
         opcionesItem.setText("Opciones...");
         opcionesItem.setIconTextGap(0);
@@ -397,10 +447,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         });
         volumenMenu.add(cuboItem);
 
-        prismaItem.setText("Prisma");
-        prismaItem.setIconTextGap(0);
-        volumenMenu.add(prismaItem);
-
         esferaItem.setText("Esfera");
         esferaItem.setIconTextGap(0);
         esferaItem.addActionListener(new java.awt.event.ActionListener() {
@@ -458,20 +504,19 @@ public class VistaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelVisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void prismaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prismaItemActionPerformed
-
-    }//GEN-LAST:event_prismaItemActionPerformed
-
     private void cuadradoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuadradoItemActionPerformed
         try {
             String lado = JOptionPane.showInputDialog(this, "Introduzca el lado.");
-            visorInpt.setText(GestorCalc.calculaAreaCuadrado(lado));
+            if (lado != null) {
+                visorInpt.setText(GestorCalc.calculaAreaCuadrado(lado));
+            }
         } catch (CalcException e) {
             muestraWarning(e);
         }
@@ -486,8 +531,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void trianguloItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trianguloItemActionPerformed
         try {
             String base = JOptionPane.showInputDialog(this, "Introduzca la base.");
-            String altura = JOptionPane.showInputDialog(this, "Introduzca la altura.");
-            visorInpt.setText(GestorCalc.calculaAreaTriangulo(base, altura));
+            if (base != null) {
+                String altura = JOptionPane.showInputDialog(this, "Introduzca la altura.");
+                if (altura != null) {
+                    visorInpt.setText(GestorCalc.calculaAreaTriangulo(base, altura));
+                }
+            }
         } catch (NumberFormatException e) {
             muestraWarning(e);
         }
@@ -496,7 +545,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void circunferenciaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_circunferenciaItemActionPerformed
         try {
             String area = JOptionPane.showInputDialog(this, "Introduzca el radio.");
-            visorInpt.setText(GestorCalc.calculaAreaCircunferencia(area));
+            if (area != null) {
+                visorInpt.setText(GestorCalc.calculaAreaCircunferencia(area));
+            }
         } catch (CalcException e) {
             muestraWarning(e);
         }
@@ -505,7 +556,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void cuboItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuboItemActionPerformed
         try {
             String lado = JOptionPane.showInputDialog(this, "Introduzca el lado.");
-            visorInpt.setText(GestorCalc.calculaVolumenCubo(lado));
+            if (lado != null) {
+                visorInpt.setText(GestorCalc.calculaVolumenCubo(lado));
+            }
         } catch (NumberFormatException e) {
             muestraWarning(e);
         }
@@ -587,11 +640,28 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnParentesis2ActionPerformed
 
     private void esferaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esferaItemActionPerformed
-        // TODO add your handling code here:
+        try {
+            String radio = JOptionPane.showInputDialog(this, "Introduzca el radio:");
+            if (radio != null) {
+                visorInpt.setText(GestorCalc.calculaVolumenEsfera(radio));
+            }
+        } catch (CalcException e) {
+            muestraWarning(e);
+        }
     }//GEN-LAST:event_esferaItemActionPerformed
 
     private void cilindroItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cilindroItemActionPerformed
-        // TODO add your handling code here:
+        try {
+            String radio = JOptionPane.showInputDialog(this, "Introduzca el radio:");
+            if (radio != null) {
+                String altura = JOptionPane.showInputDialog(this, "Introduzca la altura:");
+                if (altura != null) {
+                    visorInpt.setText(GestorCalc.calculaVolumenCilindro(radio, altura));
+                }
+            }
+        } catch (NumberFormatException e) {
+            muestraWarning(e);
+        }
     }//GEN-LAST:event_cilindroItemActionPerformed
 
     private void salirItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirItemActionPerformed
@@ -606,9 +676,30 @@ public class VistaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_formWindowClosed
 
-    private void limpiarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarItemActionPerformed
+    private void btnBorrarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarTodoActionPerformed
         visorInpt.setText("");
-    }//GEN-LAST:event_limpiarItemActionPerformed
+    }//GEN-LAST:event_btnBorrarTodoActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        String texto = visorInpt.getText();
+        if (texto.length() >= 1) {
+            visorInpt.setText(texto.substring(0, texto.length() - 1));
+        }
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnComaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComaActionPerformed
+        String a = visorInpt.getText();
+        if (a.isEmpty()) {
+            visorInpt.setText("0,");
+        } else {
+            visorInpt.setText(a + ",");
+        }
+    }//GEN-LAST:event_btnComaActionPerformed
+
+    private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
+        String a = visorInpt.getText(); //TODO hacer que si hay ceros a la izq no se escriban infinitos
+        visorInpt.setText(a + "0");
+    }//GEN-LAST:event_btn0ActionPerformed
 
     private void acercaDeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaDeItemActionPerformed
         
@@ -622,6 +713,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu avanzadosMenu;
     private javax.swing.JMenu ayudaMenu;
     private javax.swing.JMenuBar barraMenu;
+    private javax.swing.JButton btn0;
     private javax.swing.JButton btn1;
     private javax.swing.JButton btn2;
     private javax.swing.JButton btn3;
@@ -631,6 +723,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn7;
     private javax.swing.JButton btn8;
     private javax.swing.JButton btn9;
+    private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnBorrarTodo;
+    private javax.swing.JButton btnComa;
     private javax.swing.JButton btnDividir;
     private javax.swing.JButton btnIgual;
     private javax.swing.JButton btnMultiplicar;
@@ -645,13 +740,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem cuboItem;
     private javax.swing.JMenuItem esferaItem;
     private javax.swing.JMenuItem exportarItem;
-    private javax.swing.JMenuItem limpiarItem;
     private javax.swing.JMenuItem maxItem;
     private javax.swing.JMenuItem minItem;
     private javax.swing.JMenuItem opcionesItem;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelVisor;
-    private javax.swing.JMenuItem prismaItem;
     private javax.swing.JMenuItem salirItem;
     private javax.swing.JMenu tamanoMenu;
     private javax.swing.JMenuItem trianguloItem;
