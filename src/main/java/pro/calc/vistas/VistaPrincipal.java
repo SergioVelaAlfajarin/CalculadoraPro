@@ -432,6 +432,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         acercaDeItem.setText("Acerca de...");
         acercaDeItem.setIconTextGap(0);
+        acercaDeItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acercaDeItemActionPerformed(evt);
+            }
+        });
         ayudaMenu.add(acercaDeItem);
 
         barraMenu.add(ayudaMenu);
@@ -604,6 +609,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void limpiarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarItemActionPerformed
         visorInpt.setText("");
     }//GEN-LAST:event_limpiarItemActionPerformed
+
+    private void acercaDeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaDeItemActionPerformed
+        
+        new VistaAcercaDe();
+    }//GEN-LAST:event_acercaDeItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem acercaDeItem;
