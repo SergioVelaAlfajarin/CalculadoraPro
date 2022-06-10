@@ -30,18 +30,19 @@
                 <MenuItem class="javax.swing.JMenuItem" name="minItem">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Minimo"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                     <Property name="iconTextGap" type="int" value="0"/>
                   </Properties>
                 </MenuItem>
               </SubComponents>
             </Menu>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="limpiarItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Limpiar"/>
                 <Property name="iconTextGap" type="int" value="0"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="limpiarItemActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="opcionesItem">

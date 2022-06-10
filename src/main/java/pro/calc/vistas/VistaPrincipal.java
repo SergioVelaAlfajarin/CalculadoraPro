@@ -45,7 +45,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         tamanoMenu = new javax.swing.JMenu();
         maxItem = new javax.swing.JMenuItem();
         minItem = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        limpiarItem = new javax.swing.JMenuItem();
         opcionesItem = new javax.swing.JMenuItem();
         salirItem = new javax.swing.JMenuItem();
         avanzadosMenu = new javax.swing.JMenu();
@@ -321,19 +321,20 @@ public class VistaPrincipal extends javax.swing.JFrame {
         tamanoMenu.add(maxItem);
 
         minItem.setText("Minimo");
+        minItem.setEnabled(false);
         minItem.setIconTextGap(0);
         tamanoMenu.add(minItem);
 
         archivoMenu.add(tamanoMenu);
 
-        jMenuItem1.setText("Limpiar");
-        jMenuItem1.setIconTextGap(0);
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        limpiarItem.setText("Limpiar");
+        limpiarItem.setIconTextGap(0);
+        limpiarItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                limpiarItemActionPerformed(evt);
             }
         });
-        archivoMenu.add(jMenuItem1);
+        archivoMenu.add(limpiarItem);
 
         opcionesItem.setText("Opciones...");
         opcionesItem.setIconTextGap(0);
@@ -478,41 +479,31 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIgualActionPerformed
 
     private void trianguloItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trianguloItemActionPerformed
-
         try {
-            String lado = JOptionPane.showInputDialog(this, "Introduzca la base.");
+            String base = JOptionPane.showInputDialog(this, "Introduzca la base.");
             String altura = JOptionPane.showInputDialog(this, "Introduzca la altura.");
-            visorInpt.setText(GestorCalc.calculaAreaTriangulo(lado, altura));
+            visorInpt.setText(GestorCalc.calculaAreaTriangulo(base, altura));
         } catch (NumberFormatException e) {
             muestraWarning(e);
         }
-
     }//GEN-LAST:event_trianguloItemActionPerformed
 
     private void circunferenciaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_circunferenciaItemActionPerformed
-        //No funciona
         try {
             String area = JOptionPane.showInputDialog(this, "Introduzca el radio.");
             visorInpt.setText(GestorCalc.calculaAreaCircunferencia(area));
-
         } catch (CalcException e) {
             muestraWarning(e);
         }
-
-
     }//GEN-LAST:event_circunferenciaItemActionPerformed
 
     private void cuboItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuboItemActionPerformed
-
         try {
             String lado = JOptionPane.showInputDialog(this, "Introduzca el lado.");
-
             visorInpt.setText(GestorCalc.calculaVolumenCubo(lado));
-
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "No es un numero.");
+            muestraWarning(e);
         }
-
     }//GEN-LAST:event_cuboItemActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
@@ -598,8 +589,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cilindroItemActionPerformed
 
-    //salir botones
-
     private void salirItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirItemActionPerformed
         dispose();
         //cerrar bbdd
@@ -612,10 +601,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_formWindowClosed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-
+    private void limpiarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarItemActionPerformed
         visorInpt.setText("");
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_limpiarItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem acercaDeItem;
@@ -647,7 +635,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem cuboItem;
     private javax.swing.JMenuItem esferaItem;
     private javax.swing.JMenuItem exportarItem;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem limpiarItem;
     private javax.swing.JMenuItem maxItem;
     private javax.swing.JMenuItem minItem;
     private javax.swing.JMenuItem opcionesItem;
