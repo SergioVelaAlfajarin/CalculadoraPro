@@ -7,7 +7,7 @@ Creada por pablo gonzalvez y sergio vela.
 Objetivos de lanzamiento (version 1.0):
 
  - [ ] cambiar color de fondo o elegir una imagen de fondo. <br/>
- - [ ] menu de arriba con opciones. <br/>
+ - [x] menu de arriba con opciones. <br/>
  - [ ] cargando con gif. <br/>
  - [ ] boton que agrega una ventana dentro de la ventana con algo. <br/>
  - [ ] opcion a asginar shortcuts a opciones, estas se guardan en un archivo y se cargaran al inicio. <br/>
