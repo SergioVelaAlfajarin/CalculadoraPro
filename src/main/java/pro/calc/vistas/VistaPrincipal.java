@@ -707,7 +707,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void acercaDeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaDeItemActionPerformed
-        
         new VistaAcercaDe();
     }//GEN-LAST:event_acercaDeItemActionPerformed
 
