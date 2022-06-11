@@ -469,6 +469,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         conversorItem.setText("Conversor...");
         conversorItem.setIconTextGap(0);
+        conversorItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                conversorItemActionPerformed(evt);
+            }
+        });
         avanzadosMenu.add(conversorItem);
 
         barraMenu.add(avanzadosMenu);
@@ -705,6 +710,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         
         new VistaAcercaDe();
     }//GEN-LAST:event_acercaDeItemActionPerformed
+
+    private void conversorItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conversorItemActionPerformed
+        new VistaConversor();
+    }//GEN-LAST:event_conversorItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem acercaDeItem;
