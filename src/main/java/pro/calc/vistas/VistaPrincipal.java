@@ -1,5 +1,6 @@
 package pro.calc.vistas;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import pro.calc.exception.CalcException;
 import pro.calc.gestor.GestorCalc;
@@ -12,9 +13,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     public VistaPrincipal() {
         initComponents();
+        init();
+    }
+
+    private void init() {
         setVisible(true);
         setLocationRelativeTo(null);
         visorInpt.setText("");
+        
+        ImageIcon img = new ImageIcon("../resources/icon.png");
+        setIconImage(img.getImage());
     }
 
     @SuppressWarnings("unchecked")
