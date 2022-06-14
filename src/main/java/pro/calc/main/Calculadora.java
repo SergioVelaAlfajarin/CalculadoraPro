@@ -1,9 +1,6 @@
 package pro.calc.main;
 
-import java.net.URL;
-import java.util.Arrays;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+import java.io.File;
 import pro.calc.vistas.VistaPrincipal;
 
 public class Calculadora {
@@ -17,7 +14,7 @@ public class Calculadora {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            System.out.println("Error xd");
+            System.out.println(ex.getMessage());
         }
         var v = new VistaPrincipal();
     }
