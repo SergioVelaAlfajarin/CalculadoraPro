@@ -14,22 +14,18 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     public VistaPrincipal() {
         initComponents();
-        init();
-    }
-
-    private void init() {
         setIconImage();
         setVisible(true);
         setLocationRelativeTo(null);
-        visorInpt.setText("3+(123*70+40/30)");
+        visorInpt.setText("3+(123*(70-1)+40/30)+2");
     }
 
     private void setIconImage() {
         File f = new File("../resources/icon.png");
-        if(!f.exists()){
+        if (!f.exists()) {
             f = new File("resources/icon.png");
         }
-        if(!f.exists()){
+        if (!f.exists()) {
             throw new CalcException("Icono no encontrado");
         }
         ImageIcon img = new ImageIcon(f.getAbsolutePath());
@@ -526,11 +522,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cuadradoItemActionPerformed
 
     private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
-        try{
-            GestorCalc.calcularOperacion(visorInpt.getText());
-        }catch(CalcException e){
+        try {
+            String res = GestorCalc.calcularOperacion(visorInpt.getText());
+            double numRes = Double.parseDouble(res);
+            visorInpt.setText(
+                    String.format("%s=%.2f", visorInpt.getText(), numRes)
+            );
+        } catch (CalcException e) {
             muestraWarning(e);
-        }   
+        }
     }//GEN-LAST:event_btnIgualActionPerformed
 
     private void trianguloItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trianguloItemActionPerformed
@@ -707,11 +707,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void acercaDeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaDeItemActionPerformed
-        new VistaAcercaDe();
+        var v = new VistaAcercaDe();
     }//GEN-LAST:event_acercaDeItemActionPerformed
 
     private void conversorItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conversorItemActionPerformed
-        new VistaConversor();
+        var v = new VistaConversor();
     }//GEN-LAST:event_conversorItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

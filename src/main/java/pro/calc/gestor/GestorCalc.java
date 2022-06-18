@@ -6,6 +6,7 @@ import pro.calc.exception.CalcException;
 
 public abstract class GestorCalc {
 
+    //areas
     public static String calculaAreaCuadrado(String lado) throws CalcException {
         try {
             var ladoNum = Double.parseDouble(lado);
@@ -37,6 +38,7 @@ public abstract class GestorCalc {
         }
     }
 
+    //volumenes
     public static String calculaVolumenCubo(String lado) throws CalcException {
         try {
             var ladoNum = Double.parseDouble(lado);
@@ -60,13 +62,12 @@ public abstract class GestorCalc {
         return String.format("%.2f * (%.2f * %.2f) * %.2f = %.2f", Math.PI, radioNum, radioNum, alturaNum, resultado);
     }
 
+    // funcion de calcular
     public static String calcularOperacion(String operacion) throws CalcException {
+        System.out.println(operacion);
         LinkedList<String> lista = divideOperacion(operacion);
         System.out.println(lista);
-        //int tieneParentesis = compruebaSiParentesis(lista);
-        calcula(lista);
-
-        return null;
+        return calcula(lista);
     }
 
     public static LinkedList divideOperacion(String operacion) {
@@ -116,37 +117,28 @@ public abstract class GestorCalc {
 
         if (posPrimerPar >= 0) {
             int posUltimoPar = getPosPriParentesisCierre(lista);
-            if (posPrimerPar < 0) {
+            if (posUltimoPar < 0) {
                 throw new CalcException("Operacion mal formada");
             }
 
             LinkedList<String> subLista = obtenerSubLista(lista, posPrimerPar, posUltimoPar);
+
             System.out.println("SubLista: " + subLista);
-            lista.removeAll(subLista);
+
             String resParentesis = calcula(subLista);
+
+            eliminaRango(lista, posPrimerPar, posUltimoPar);
+
             lista.add(posPrimerPar, resParentesis);
+
             System.out.println("lista sin parentesis: " + lista);
+
+            return calcula(lista);
         } else {
             boolean haySimbolos = haySimbolos(lista, "*", "/");
             while (haySimbolos) {
                 int posPrimerSigno = getPosPrimerSigno(lista, "*", "/");
-                if (posPrimerSigno <= 0 || posPrimerSigno >= lista.size()) {
-                    throw new CalcException("Operacion mal formada.");
-                }
-
-                String posAnterior = lista.get(posPrimerSigno - 1);
-                String posSiguiente = lista.get(posPrimerSigno + 1);
-                double num1 = Double.parseDouble(posAnterior);
-                double num2 = Double.parseDouble(posSiguiente);
-                double resultado;
-                if (lista.get(posPrimerSigno).equals("*")) {
-                    resultado = num1 * num2;
-                } else {
-                    resultado = num1 / num2;
-                }
-
-                lista.add(posPrimerSigno - 1, resultado + "");
-                eliminaOperaciones(lista, posPrimerSigno);
+                realizaOperacion(lista, posPrimerSigno);
                 haySimbolos = haySimbolos(lista, "*", "/");
                 System.out.println(lista);
             }
@@ -154,23 +146,7 @@ public abstract class GestorCalc {
             haySimbolos = haySimbolos(lista, "+", "-");
             while (haySimbolos) {
                 int posPrimerSigno = getPosPrimerSigno(lista, "+", "-");
-                if (posPrimerSigno <= 0 || posPrimerSigno >= lista.size()) {
-                    throw new CalcException("Operacion mal formada.");
-                }
-
-                String posAnterior = lista.get(posPrimerSigno - 1);
-                String posSiguiente = lista.get(posPrimerSigno + 1);
-                double num1 = Double.parseDouble(posAnterior);
-                double num2 = Double.parseDouble(posSiguiente);
-                double resultado;
-                if (lista.get(posPrimerSigno).equals("+")) {
-                    resultado = num1 + num2;
-                } else {
-                    resultado = num1 - num2;
-                }
-
-                lista.add(posPrimerSigno - 1, resultado + "");
-                eliminaOperaciones(lista, posPrimerSigno);
+                realizaOperacion(lista, posPrimerSigno);
                 haySimbolos = haySimbolos(lista, "-", "+");
                 System.out.println(lista);
             }
@@ -179,18 +155,40 @@ public abstract class GestorCalc {
         return lista.getFirst();
     }
 
-    private static void eliminaOperaciones(LinkedList<String> lista, int posPrimerSigno) {
+    private static void realizaOperacion(LinkedList<String> lista, int posPrimerSigno) {
+        String posAnterior = lista.get(posPrimerSigno - 1);
+        String posSiguiente = lista.get(posPrimerSigno + 1);
+
+        double num1 = Double.parseDouble(posAnterior);
+        double num2 = Double.parseDouble(posSiguiente);
+
+        double resultado;
+
+        switch (lista.get(posPrimerSigno)) {
+            case "*" ->
+                resultado = num1 * num2;
+            case "/" ->
+                resultado = num1 / num2;
+            case "+" ->
+                resultado = num1 + num2;
+            case "-" ->
+                resultado = num1 - num2;
+            default ->
+                throw new CalcException("signo invalido");
+        }
+
+        eliminaRango(lista, posPrimerSigno - 1, posPrimerSigno + 1);
+
+        lista.add(posPrimerSigno - 1, resultado + "");
+    }
+
+    private static void eliminaRango(LinkedList<String> lista, int primer, int ultimo) {
         ListIterator<String> it = lista.listIterator();
         int contador = 0;
         while (it.hasNext()) {
             it.next();
-            if (contador == posPrimerSigno) {
+            if (contador >= primer && contador <= ultimo) {
                 it.remove();
-                it.next();
-                it.remove();
-                it.next();
-                it.remove();
-                break;
             }
             contador++;
         }
@@ -227,7 +225,6 @@ public abstract class GestorCalc {
             }
             counter++;
         }
-        System.out.println("listaTemp: " + listaTemp);
         return listaTemp;
     }
 
