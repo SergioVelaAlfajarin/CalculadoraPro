@@ -64,52 +64,40 @@ public abstract class GestorCalc {
 
     // funcion de calcular
     public static String calcularOperacion(String operacion) throws CalcException {
-        System.out.println(operacion);
         LinkedList<String> lista = divideOperacion(operacion);
         System.out.println(lista);
         return calcula(lista);
     }
 
     public static LinkedList divideOperacion(String operacion) {
-        LinkedList<String> operacionDividida = new LinkedList<>();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < operacion.length(); i++) {
-            char letra = operacion.charAt(i);
+        var opDividida = new LinkedList<String>();
+        var arrOperacion = operacion.toCharArray();
+        var sb = new StringBuilder();
+
+        for (int i = 0; i < arrOperacion.length; i++) {
+            char letra = arrOperacion[i];
+            //si es un digito lo agrega al sb
             if (Character.isDigit(letra)) {
                 sb.append(letra);
-            } else {
+            } //si no, añade el valor que tenga el sb a la linkedlist si no esta vacio,
+            //y añade la letra actual a la linkedlist. Por ultimo, resetea el sb
+            else {
                 String anterior = sb.toString();
                 if (!anterior.isEmpty()) {
-                    operacionDividida.addLast(anterior);
+                    opDividida.addLast(anterior);
                 }
-                operacionDividida.add(letra + "");
+                opDividida.addLast(letra + "");
                 sb = new StringBuilder();
             }
         }
+
+        //comprueba si ha quedado algun valor sobrante en el sb
+        //y si es asi lo añade a la linkedlist
         String resto = sb.toString();
         if (!resto.isEmpty()) {
-            operacionDividida.addLast(resto);
+            opDividida.addLast(resto);
         }
-        return operacionDividida;
-    }
-
-    private static int getPosUltParentesisApertura(LinkedList<String> lista) {
-        int pos = -1;
-        for (int i = 0; i < lista.size(); i++) {
-            if (lista.get(i).equals("(")) {
-                pos = i;
-            }
-        }
-        return pos;
-    }
-
-    private static int getPosPriParentesisCierre(LinkedList<String> lista) {
-        for (int i = 0; i < lista.size(); i++) {
-            if (lista.get(i).equals(")")) {
-                return i;
-            }
-        }
-        return -1;
+        return opDividida;
     }
 
     private static String calcula(LinkedList<String> lista) {
@@ -155,16 +143,24 @@ public abstract class GestorCalc {
         return lista.getFirst();
     }
 
-    private static void realizaOperacion(LinkedList<String> lista, int posPrimerSigno) {
-        String posAnterior = lista.get(posPrimerSigno - 1);
-        String posSiguiente = lista.get(posPrimerSigno + 1);
+    private static int getPosUltParentesisApertura(LinkedList<String> lista) {
+        return lista.lastIndexOf("(");
+    }
 
-        double num1 = Double.parseDouble(posAnterior);
-        double num2 = Double.parseDouble(posSiguiente);
+    private static int getPosPriParentesisCierre(LinkedList<String> lista) {
+        return lista.indexOf(")");
+    }
 
+    private static void realizaOperacion(LinkedList<String> lista, int posSigno) {
+        String numAnterior = lista.get(posSigno - 1);
+        String numSiguiente = lista.get(posSigno + 1);
+        String signo = lista.get(posSigno);
+        
+        double num1 = Double.parseDouble(numAnterior);
+        double num2 = Double.parseDouble(numSiguiente);
         double resultado;
-
-        switch (lista.get(posPrimerSigno)) {
+        
+        switch (signo) {
             case "*" ->
                 resultado = num1 * num2;
             case "/" ->
@@ -177,9 +173,9 @@ public abstract class GestorCalc {
                 throw new CalcException("signo invalido");
         }
 
-        eliminaRango(lista, posPrimerSigno - 1, posPrimerSigno + 1);
+        eliminaRango(lista, posSigno - 1, posSigno + 1);
 
-        lista.add(posPrimerSigno - 1, resultado + "");
+        lista.add(posSigno - 1, resultado + "");
     }
 
     private static void eliminaRango(LinkedList<String> lista, int primer, int ultimo) {
@@ -216,11 +212,11 @@ public abstract class GestorCalc {
         return -1;
     }
 
-    private static LinkedList<String> obtenerSubLista(LinkedList<String> lista, int posPrimerPar, int posUltimoPar) {
+    private static LinkedList<String> obtenerSubLista(LinkedList<String> lista, int inicio, int fin) {
         LinkedList<String> listaTemp = new LinkedList<>();
         int counter = 0;
         for (String s : lista) {
-            if (posPrimerPar < counter && counter < posUltimoPar) {
+            if (inicio < counter && counter < fin) {
                 listaTemp.addLast(s);
             }
             counter++;
