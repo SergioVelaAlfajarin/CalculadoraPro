@@ -5,64 +5,12 @@ import java.util.ListIterator;
 import pro.calc.exception.CalcException;
 
 public abstract class GestorCalc {
-
-    //areas
-    public static String calculaAreaCuadrado(String lado) throws CalcException {
-        try {
-            var ladoNum = Double.parseDouble(lado);
-            var resultado = ladoNum * ladoNum;
-            return String.format("%.2f * %.2f = %.2f", ladoNum, ladoNum, resultado);
-        } catch (NumberFormatException e) {
-            throw new CalcException("No es un numero valido.");
-        }
+    private static LinkedList<String> operacionList = new LinkedList<>();
+    
+    public static void setLista(String operacion){
+        //TODO este metodo y usar clase operacion.
     }
-
-    public static String calculaAreaTriangulo(String base, String altura) throws CalcException {
-        try {
-            var baseNum = Double.parseDouble(base);
-            var alturaNum = Double.parseDouble(altura);
-            var resultado = (baseNum * alturaNum) / 2;
-            return String.format("(%.2f * %.2f) / 2 = %.2f", baseNum, alturaNum, resultado);
-        } catch (NumberFormatException e) {
-            throw new CalcException("No es un numero valido.");
-        }
-    }
-
-    public static String calculaAreaCircunferencia(String radio) throws CalcException {
-        try {
-            var radioNum = Double.parseDouble(radio);
-            var resultado = Math.PI * Math.pow(radioNum, 2);
-            return String.format("%.2f * (%.2f * %.2f) = %.2f", Math.PI, radioNum, radioNum, resultado);
-        } catch (NumberFormatException e) {
-            throw new CalcException("No es un numero valido.");
-        }
-    }
-
-    //volumenes
-    public static String calculaVolumenCubo(String lado) throws CalcException {
-        try {
-            var ladoNum = Double.parseDouble(lado);
-            var resultado = Math.pow(ladoNum, 3);
-            return String.format(" %.2f * %.2f * %.2f  = %.2f", ladoNum, ladoNum, ladoNum, resultado);
-        } catch (NumberFormatException e) {
-            throw new CalcException("No es un numero valido.");
-        }
-    }
-
-    public static String calculaVolumenEsfera(String radio) {
-        var radioNum = Double.parseDouble(radio);
-        var volumen = 4 / 3 * Math.PI * Math.pow(radioNum, 3);
-        return String.format("4/3 * %.2f * (%.2f * %.2f * %.2f) = %.2f", Math.PI, radioNum, radioNum, radioNum, volumen);
-    }
-
-    public static String calculaVolumenCilindro(String radio, String altura) {
-        var radioNum = Double.parseDouble(radio);
-        var alturaNum = Double.parseDouble(altura);
-        var resultado = Math.PI * Math.pow(radioNum, 2) * alturaNum;
-        return String.format("%.2f * (%.2f * %.2f) * %.2f = %.2f", Math.PI, radioNum, radioNum, alturaNum, resultado);
-    }
-
-    // funcion de calcular
+    
     public static String calcularOperacion(String operacion) throws CalcException {
         LinkedList<String> lista = divideOperacion(operacion);
         System.out.println(lista);
@@ -155,11 +103,11 @@ public abstract class GestorCalc {
         String numAnterior = lista.get(posSigno - 1);
         String numSiguiente = lista.get(posSigno + 1);
         String signo = lista.get(posSigno);
-        
+
         double num1 = Double.parseDouble(numAnterior);
         double num2 = Double.parseDouble(numSiguiente);
         double resultado;
-        
+
         switch (signo) {
             case "*" ->
                 resultado = num1 * num2;

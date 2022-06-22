@@ -4,7 +4,7 @@ import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import pro.calc.exception.CalcException;
-import pro.calc.gestor.GestorCalc;
+import pro.calc.gestor.*;
 
 public class VistaPrincipal extends javax.swing.JFrame {
 
@@ -514,7 +514,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         try {
             String lado = JOptionPane.showInputDialog(this, "Introduzca el lado.");
             if (lado != null) {
-                visorInpt.setText(GestorCalc.calculaAreaCuadrado(lado));
+                visorInpt.setText(GestorArea.calculaAreaCuadrado(lado));
             }
         } catch (CalcException e) {
             muestraWarning(e);
@@ -539,7 +539,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             if (base != null) {
                 String altura = JOptionPane.showInputDialog(this, "Introduzca la altura.");
                 if (altura != null) {
-                    visorInpt.setText(GestorCalc.calculaAreaTriangulo(base, altura));
+                    visorInpt.setText(GestorArea.calculaAreaTriangulo(base, altura));
                 }
             }
         } catch (NumberFormatException e) {
@@ -551,7 +551,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         try {
             String area = JOptionPane.showInputDialog(this, "Introduzca el radio.");
             if (area != null) {
-                visorInpt.setText(GestorCalc.calculaAreaCircunferencia(area));
+                visorInpt.setText(GestorArea.calculaAreaCircunferencia(area));
             }
         } catch (CalcException e) {
             muestraWarning(e);
@@ -562,7 +562,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         try {
             String lado = JOptionPane.showInputDialog(this, "Introduzca el lado.");
             if (lado != null) {
-                visorInpt.setText(GestorCalc.calculaVolumenCubo(lado));
+                visorInpt.setText(GestorVolumen.calculaVolumenCubo(lado));
             }
         } catch (NumberFormatException e) {
             muestraWarning(e);
@@ -648,7 +648,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         try {
             String radio = JOptionPane.showInputDialog(this, "Introduzca el radio:");
             if (radio != null) {
-                visorInpt.setText(GestorCalc.calculaVolumenEsfera(radio));
+                visorInpt.setText(GestorVolumen.calculaVolumenEsfera(radio));
             }
         } catch (CalcException e) {
             muestraWarning(e);
@@ -661,7 +661,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             if (radio != null) {
                 String altura = JOptionPane.showInputDialog(this, "Introduzca la altura:");
                 if (altura != null) {
-                    visorInpt.setText(GestorCalc.calculaVolumenCilindro(radio, altura));
+                    visorInpt.setText(GestorVolumen.calculaVolumenCilindro(radio, altura));
                 }
             }
         } catch (NumberFormatException e) {
