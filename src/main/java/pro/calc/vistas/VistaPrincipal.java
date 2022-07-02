@@ -523,10 +523,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
         try {
-            String res = GestorCalc.calcularOperacion(visorInpt.getText());
-            double numRes = Double.parseDouble(res);
+            String operacion = visorInpt.getText();
+            GestorCalc.setLista(operacion);
+            String res = GestorCalc.calcularOperacion();
             visorInpt.setText(
-                    String.format("%s=%.2f", visorInpt.getText(), numRes)
+                    String.format("%s=%s", visorInpt.getText(), res)
             );
         } catch (CalcException e) {
             muestraWarning(e);

@@ -3,21 +3,17 @@ package pro.calc.gestor;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import pro.calc.exception.CalcException;
+import pro.calc.modelo.Operacion;
 
 public abstract class GestorCalc {
+
     private static LinkedList<String> operacionList = new LinkedList<>();
-    
-    public static void setLista(String operacion){
-        //TODO este metodo y usar clase operacion.
-    }
-    
-    public static String calcularOperacion(String operacion) throws CalcException {
-        LinkedList<String> lista = divideOperacion(operacion);
-        System.out.println(lista);
-        return calcula(lista);
+
+    public static void setLista(String operacion) {//TODO este metodo y usar clase operacion.
+        operacionList = divideOperacion(operacion);
     }
 
-    public static LinkedList divideOperacion(String operacion) {
+    private static LinkedList divideOperacion(String operacion) {
         var opDividida = new LinkedList<String>();
         var arrOperacion = operacion.toCharArray();
         var sb = new StringBuilder();
@@ -48,26 +44,27 @@ public abstract class GestorCalc {
         return opDividida;
     }
 
-    private static String calcula(LinkedList<String> lista) {
-        int posPrimerPar = getPosUltParentesisApertura(lista);
+    public static String calcularOperacion() throws CalcException {
+        if (operacionList.isEmpty()) {
+            throw new CalcException("Tienes que establecer la lista antes de calcular la operacion.");
+        }
+        String resultado = calcula(operacionList);
+        return resultado;
+    }
 
-        if (posPrimerPar >= 0) {
-            int posUltimoPar = getPosPriParentesisCierre(lista);
-            if (posUltimoPar < 0) {
+    private static String calcula(LinkedList<String> lista) {
+        int ultimoParAper = getPosUltParentesisApertura(lista);
+
+        if (ultimoParAper >= 0) {
+            int primerParCier = getPosPriParentesisCierre(lista);
+            if (primerParCier < 0) {
                 throw new CalcException("Operacion mal formada");
             }
 
-            LinkedList<String> subLista = obtenerSubLista(lista, posPrimerPar, posUltimoPar);
-
-            System.out.println("SubLista: " + subLista);
-
+            LinkedList<String> subLista = obtenerSubLista(lista, ultimoParAper, primerParCier);
             String resParentesis = calcula(subLista);
-
-            eliminaRango(lista, posPrimerPar, posUltimoPar);
-
-            lista.add(posPrimerPar, resParentesis);
-
-            System.out.println("lista sin parentesis: " + lista);
+            eliminaRango(lista, ultimoParAper, primerParCier);
+            lista.add(ultimoParAper, resParentesis);
 
             return calcula(lista);
         } else {
@@ -76,15 +73,12 @@ public abstract class GestorCalc {
                 int posPrimerSigno = getPosPrimerSigno(lista, "*", "/");
                 realizaOperacion(lista, posPrimerSigno);
                 haySimbolos = haySimbolos(lista, "*", "/");
-                System.out.println(lista);
             }
-
             haySimbolos = haySimbolos(lista, "+", "-");
             while (haySimbolos) {
                 int posPrimerSigno = getPosPrimerSigno(lista, "+", "-");
                 realizaOperacion(lista, posPrimerSigno);
                 haySimbolos = haySimbolos(lista, "-", "+");
-                System.out.println(lista);
             }
         }
 
@@ -103,27 +97,13 @@ public abstract class GestorCalc {
         String numAnterior = lista.get(posSigno - 1);
         String numSiguiente = lista.get(posSigno + 1);
         String signo = lista.get(posSigno);
-
-        double num1 = Double.parseDouble(numAnterior);
-        double num2 = Double.parseDouble(numSiguiente);
-        double resultado;
-
-        switch (signo) {
-            case "*" ->
-                resultado = num1 * num2;
-            case "/" ->
-                resultado = num1 / num2;
-            case "+" ->
-                resultado = num1 + num2;
-            case "-" ->
-                resultado = num1 - num2;
-            default ->
-                throw new CalcException("signo invalido");
-        }
-
+        
+        Operacion op = new Operacion(numAnterior, numSiguiente);
+        
+        String res = op.calcular(signo);
         eliminaRango(lista, posSigno - 1, posSigno + 1);
-
-        lista.add(posSigno - 1, resultado + "");
+        
+        lista.add(posSigno - 1, res);
     }
 
     private static void eliminaRango(LinkedList<String> lista, int primer, int ultimo) {

@@ -1,5 +1,6 @@
 package pro.calc.modelo;
 
+import java.util.InputMismatchException;
 import pro.calc.exception.CalcException;
 
 public class Operacion implements Calculable {
@@ -10,6 +11,15 @@ public class Operacion implements Calculable {
     public Operacion() {
         num1 = 0;
         num2 = 0;
+    }
+
+    public Operacion(String num1, String num2) throws CalcException {
+        try {
+            this.num1 = Double.parseDouble(num1.replace(",", "."));
+            this.num2 = Double.parseDouble(num2.replace(",", "."));
+        } catch (InputMismatchException e) {
+            throw new CalcException("No es un numero");
+        }
     }
 
     public Operacion(double num1, double num2) {
@@ -34,16 +44,16 @@ public class Operacion implements Calculable {
     }
 
     @Override
-    public double calcular(String signo) {
+    public String calcular(String signo) {
         return switch (signo) {
             case "+" ->
-                num1 + num2;
+                String.format("%.2f", num1 + num2);
             case "-" ->
-                num1 - num2;
+                String.format("%.2f", num1 - num2);
             case "/" ->
-                num1 / num2;
+                String.format("%.2f", num1 / num2);
             case "*" ->
-                num1 * num2;
+                String.format("%.2f", num1 * num2);
             default ->
                 throw new CalcException("Signo incorrecto");
         };
