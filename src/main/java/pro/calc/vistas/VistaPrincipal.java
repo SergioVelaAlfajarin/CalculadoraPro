@@ -524,8 +524,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
         try {
             String operacion = visorInpt.getText();
-            GestorCalc.setLista(operacion);
-            String res = GestorCalc.calcularOperacion();
+            String res = GestorCalc.calcularOperacion(operacion);
             visorInpt.setText(
                     String.format("%s=%s", visorInpt.getText(), res)
             );

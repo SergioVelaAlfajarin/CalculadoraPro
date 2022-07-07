@@ -9,7 +9,7 @@ public abstract class GestorCalc {
 
     private static LinkedList<String> operacionList = new LinkedList<>();
 
-    public static void setLista(String operacion) {//TODO este metodo y usar clase operacion.
+    private static void setLista(String operacion) {//TODO este metodo y usar clase operacion.
         operacionList = divideOperacion(operacion);
     }
 
@@ -44,10 +44,13 @@ public abstract class GestorCalc {
         return opDividida;
     }
 
-    public static String calcularOperacion() throws CalcException {
+    public static String calcularOperacion(String operacion) throws CalcException {
+        setLista(operacion);
+        
         if (operacionList.isEmpty()) {
             throw new CalcException("Tienes que establecer la lista antes de calcular la operacion.");
         }
+        
         String resultado = calcula(operacionList);
         return resultado;
     }
@@ -56,7 +59,7 @@ public abstract class GestorCalc {
         int ultimoParAper = getPosUltParentesisApertura(lista);
 
         if (ultimoParAper >= 0) {
-            int primerParCier = getPosPriParentesisCierre(lista);
+            int primerParCier = getPosPriParentesisCierre(ultimoParAper, lista);
             if (primerParCier < 0) {
                 throw new CalcException("Operacion mal formada");
             }
@@ -89,8 +92,13 @@ public abstract class GestorCalc {
         return lista.lastIndexOf("(");
     }
 
-    private static int getPosPriParentesisCierre(LinkedList<String> lista) {
-        return lista.indexOf(")");
+    private static int getPosPriParentesisCierre(int posApertura, LinkedList<String> lista) {
+        for (int i = posApertura; i < lista.size(); i++) {
+            String pos = lista.get(i);
+            if(pos.equals(")"))
+                return i;
+        }
+        return -1;
     }
 
     private static void realizaOperacion(LinkedList<String> lista, int posSigno) {

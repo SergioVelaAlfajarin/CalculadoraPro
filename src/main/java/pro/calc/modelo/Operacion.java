@@ -45,18 +45,20 @@ public class Operacion implements Calculable {
 
     @Override
     public String calcular(String signo) {
-        return switch (signo) {
+        String resultado; 
+        switch (signo) {
             case "+" ->
-                String.format("%.2f", num1 + num2);
+                resultado = String.format("%.2f", num1 + num2);
             case "-" ->
-                String.format("%.2f", num1 - num2);
+                resultado =String.format("%.2f", num1 - num2);
             case "/" ->
-                String.format("%.2f", num1 / num2);
+                resultado =String.format("%.2f", num1 / num2);
             case "*" ->
-                String.format("%.2f", num1 * num2);
+               resultado = String.format("%.2f", num1 * num2);
             default ->
                 throw new CalcException("Signo incorrecto");
-        };
+        }
+        resultado = resultado.replace(",00", "");
+        return resultado;
     }
-
 }
