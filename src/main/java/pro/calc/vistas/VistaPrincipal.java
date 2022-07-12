@@ -1,9 +1,10 @@
 package pro.calc.vistas;
 
+import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import pro.calc.exception.CalcException;
-import pro.calc.gestor.GestorCalc;
+import pro.calc.gestor.*;
 
 public class VistaPrincipal extends javax.swing.JFrame {
 
@@ -13,15 +14,21 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     public VistaPrincipal() {
         initComponents();
-        init();
-    }
-
-    private void init() {
+        setIconImage();
         setVisible(true);
         setLocationRelativeTo(null);
-        visorInpt.setText("");
-        
-        ImageIcon img = new ImageIcon("../resources/icon.png");
+        visorInpt.setText("3+(123*(70-1)+40/30)+2");
+    }
+
+    private void setIconImage() {
+        File f = new File("../resources/icon.png");
+        if (!f.exists()) {
+            f = new File("resources/icon.png");
+        }
+        if (!f.exists()) {
+            throw new CalcException("Icono no encontrado");
+        }
+        ImageIcon img = new ImageIcon(f.getAbsolutePath());
         setIconImage(img.getImage());
     }
 
@@ -29,8 +36,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelVisor = new javax.swing.JPanel();
-        visorInpt = new javax.swing.JTextField();
         panelPrincipal = new javax.swing.JPanel();
         btn0 = new javax.swing.JButton();
         btn1 = new javax.swing.JButton();
@@ -52,6 +57,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         btnParentesis2 = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
         btnBorrarTodo = new javax.swing.JButton();
+        visorInpt = new javax.swing.JTextField();
         barraMenu = new javax.swing.JMenuBar();
         archivoMenu = new javax.swing.JMenu();
         exportarItem = new javax.swing.JMenuItem();
@@ -83,30 +89,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 formWindowClosed(evt);
             }
         });
-
-        visorInpt.setBackground(new java.awt.Color(204, 204, 204));
-        visorInpt.setFont(new java.awt.Font("Cascadia Code", 1, 16)); // NOI18N
-        visorInpt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        visorInpt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        visorInpt.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        visorInpt.setEnabled(false);
-
-        javax.swing.GroupLayout panelVisorLayout = new javax.swing.GroupLayout(panelVisor);
-        panelVisor.setLayout(panelVisorLayout);
-        panelVisorLayout.setHorizontalGroup(
-            panelVisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelVisorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(visorInpt, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
-        );
-        panelVisorLayout.setVerticalGroup(
-            panelVisorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVisorLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addComponent(visorInpt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
 
         btn0.setText("0");
         btn0.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -225,7 +207,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         });
 
         btnMultiplicar.setForeground(new java.awt.Color(0, 102, 153));
-        btnMultiplicar.setText("x");
+        btnMultiplicar.setText("*");
         btnMultiplicar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMultiplicar.setPreferredSize(new java.awt.Dimension(50, 50));
         btnMultiplicar.addActionListener(new java.awt.event.ActionListener() {
@@ -291,57 +273,69 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        visorInpt.setBackground(new java.awt.Color(204, 204, 204));
+        visorInpt.setFont(new java.awt.Font("Cascadia Code", 1, 16)); // NOI18N
+        visorInpt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        visorInpt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        visorInpt.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        visorInpt.setEnabled(false);
+
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBorrarTodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnParentesis1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelPrincipalLayout.createSequentialGroup()
-                            .addComponent(btn8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btn9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnDividir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelPrincipalLayout.createSequentialGroup()
-                            .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btn3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnSuma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelPrincipalLayout.createSequentialGroup()
-                            .addComponent(btn5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btn6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnResta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                        .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnComa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnIgual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                        .addComponent(btn0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnParentesis2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnMultiplicar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(visorInpt)
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btn7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBorrarTodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnParentesis1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 24, Short.MAX_VALUE)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                    .addComponent(btn8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btn9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnDividir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                    .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btn3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnSuma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                    .addComponent(btn5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btn6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnResta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnComa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnIgual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(btn0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnParentesis2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnMultiplicar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(21, 21, 21))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(15, 15, 15)
+                .addComponent(visorInpt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -365,13 +359,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addComponent(btnMultiplicar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnParentesis2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIgual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBorrarTodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnComa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         archivoMenu.setText("Archivo");
@@ -506,19 +500,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelVisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelVisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -528,7 +514,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         try {
             String lado = JOptionPane.showInputDialog(this, "Introduzca el lado.");
             if (lado != null) {
-                visorInpt.setText(GestorCalc.calculaAreaCuadrado(lado));
+                visorInpt.setText(GestorArea.calculaAreaCuadrado(lado));
             }
         } catch (CalcException e) {
             muestraWarning(e);
@@ -536,9 +522,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cuadradoItemActionPerformed
 
     private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
-        String a = visorInpt.getText();
-        visorInpt.setText(a + "=");
-        //TODO LA OPERACION
+        try {
+            String operacion = visorInpt.getText();
+            String res = GestorCalc.calcularOperacion(operacion);
+            visorInpt.setText(
+                    String.format("%s=%s", visorInpt.getText(), res)
+            );
+        } catch (CalcException e) {
+            muestraWarning(e);
+        }
     }//GEN-LAST:event_btnIgualActionPerformed
 
     private void trianguloItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trianguloItemActionPerformed
@@ -547,7 +539,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             if (base != null) {
                 String altura = JOptionPane.showInputDialog(this, "Introduzca la altura.");
                 if (altura != null) {
-                    visorInpt.setText(GestorCalc.calculaAreaTriangulo(base, altura));
+                    visorInpt.setText(GestorArea.calculaAreaTriangulo(base, altura));
                 }
             }
         } catch (NumberFormatException e) {
@@ -559,7 +551,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         try {
             String area = JOptionPane.showInputDialog(this, "Introduzca el radio.");
             if (area != null) {
-                visorInpt.setText(GestorCalc.calculaAreaCircunferencia(area));
+                visorInpt.setText(GestorArea.calculaAreaCircunferencia(area));
             }
         } catch (CalcException e) {
             muestraWarning(e);
@@ -570,7 +562,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         try {
             String lado = JOptionPane.showInputDialog(this, "Introduzca el lado.");
             if (lado != null) {
-                visorInpt.setText(GestorCalc.calculaVolumenCubo(lado));
+                visorInpt.setText(GestorVolumen.calculaVolumenCubo(lado));
             }
         } catch (NumberFormatException e) {
             muestraWarning(e);
@@ -639,7 +631,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void btnMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiplicarActionPerformed
         String a = visorInpt.getText();
-        visorInpt.setText(a + "x");
+        visorInpt.setText(a + "*");
     }//GEN-LAST:event_btnMultiplicarActionPerformed
 
     private void btnParentesis1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnParentesis1ActionPerformed
@@ -656,7 +648,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         try {
             String radio = JOptionPane.showInputDialog(this, "Introduzca el radio:");
             if (radio != null) {
-                visorInpt.setText(GestorCalc.calculaVolumenEsfera(radio));
+                visorInpt.setText(GestorVolumen.calculaVolumenEsfera(radio));
             }
         } catch (CalcException e) {
             muestraWarning(e);
@@ -669,7 +661,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             if (radio != null) {
                 String altura = JOptionPane.showInputDialog(this, "Introduzca la altura:");
                 if (altura != null) {
-                    visorInpt.setText(GestorCalc.calculaVolumenCilindro(radio, altura));
+                    visorInpt.setText(GestorVolumen.calculaVolumenCilindro(radio, altura));
                 }
             }
         } catch (NumberFormatException e) {
@@ -715,11 +707,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void acercaDeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaDeItemActionPerformed
-        new VistaAcercaDe();
+        var v = new VistaAcercaDe();
     }//GEN-LAST:event_acercaDeItemActionPerformed
 
     private void conversorItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conversorItemActionPerformed
-        new VistaConversor();
+        var v = new VistaConversor();
     }//GEN-LAST:event_conversorItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -760,7 +752,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem minItem;
     private javax.swing.JMenuItem opcionesItem;
     private javax.swing.JPanel panelPrincipal;
-    private javax.swing.JPanel panelVisor;
     private javax.swing.JMenuItem salirItem;
     private javax.swing.JMenu tamanoMenu;
     private javax.swing.JMenuItem trianguloItem;
