@@ -2,16 +2,19 @@ package pro.calc.vistas;
 
 import java.io.File;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import pro.calc.exception.CalcException;
 
 public class VistaConversor extends javax.swing.JFrame {
 
-    public VistaConversor() {
+    private JFrame ventana;
+    public VistaConversor(JFrame v) {
         initComponents();
         setIconImage();
         setLocationRelativeTo(null);
         setVisible(true);
         setTitle("Conversor");
+        ventana =v;
     }
     
         private void setIconImage() {
@@ -80,6 +83,11 @@ public class VistaConversor extends javax.swing.JFrame {
         indicadorLbl.setText("Cantidad a convertir:");
 
         cantidadInpt.setFont(new java.awt.Font("Cascadia Code", 1, 14)); // NOI18N
+        cantidadInpt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cantidadInptActionPerformed(evt);
+            }
+        });
 
         resultadoLbl.setText("Resultado:");
 
@@ -145,6 +153,7 @@ public class VistaConversor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        ventana.setVisible(true);
         dispose();
 
     }//GEN-LAST:event_formWindowClosed
@@ -156,6 +165,10 @@ public class VistaConversor extends javax.swing.JFrame {
     private void origenCmbbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_origenCmbbxActionPerformed
         cambiarComboDestino(origenCmbbx.getSelectedIndex());
     }//GEN-LAST:event_origenCmbbxActionPerformed
+
+    private void cantidadInptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadInptActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cantidadInptActionPerformed
 
     private void cambiarComboDestino(Integer selectedItem) {
         switch (selectedItem) {

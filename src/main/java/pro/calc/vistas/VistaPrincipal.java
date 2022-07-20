@@ -715,8 +715,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_acercaDeItemActionPerformed
 
     private void conversorItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conversorItemActionPerformed
+        
         setVisible(false);
-        var v = new VistaConversor();
+        var v = new VistaConversor(this);
     }//GEN-LAST:event_conversorItemActionPerformed
 
     private void visorInptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visorInptActionPerformed
