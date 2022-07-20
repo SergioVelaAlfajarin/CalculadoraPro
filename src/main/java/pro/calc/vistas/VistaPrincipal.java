@@ -17,7 +17,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         setIconImage();
         setVisible(true);
         setLocationRelativeTo(null);
-        visorInpt.setText("3+(123*(70-1)+40/30)+2");
     }
 
     private void setIconImage() {
