@@ -1,12 +1,29 @@
 package pro.calc.vistas;
 
+import java.io.File;
+import javax.swing.ImageIcon;
+import pro.calc.exception.CalcException;
+
 public class VistaConversor extends javax.swing.JFrame {
 
     public VistaConversor() {
         initComponents();
+        setIconImage();
         setLocationRelativeTo(null);
         setVisible(true);
         setTitle("Conversor");
+    }
+    
+        private void setIconImage() {
+        File f = new File("../resources/icon.png");
+        if (!f.exists()) {
+            f = new File("resources/icon.png");
+        }
+        if (!f.exists()) {
+            throw new CalcException("Icono no encontrado");
+        }
+        ImageIcon img = new ImageIcon(f.getAbsolutePath());
+        setIconImage(img.getImage());
     }
 
     @SuppressWarnings("unchecked")
