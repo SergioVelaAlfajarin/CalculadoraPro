@@ -159,5 +159,5 @@ public abstract class GestorCalc {
         }
         return listaTemp;
     }
-
+    
 }
