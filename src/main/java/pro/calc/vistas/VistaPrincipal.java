@@ -574,78 +574,63 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cuboItemActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-        String a = visorInpt.getText();
-        visorInpt.setText(a + "1");
+        addTextVisor("1");
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
-        String a = visorInpt.getText();
-        visorInpt.setText(a + "2");
+        addTextVisor("2");
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
-        String a = visorInpt.getText();
-        visorInpt.setText(a + "3");
+        addTextVisor("3");
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
-        String a = visorInpt.getText();
-        visorInpt.setText(a + "4");
+        addTextVisor("4");
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
-        String a = visorInpt.getText();
-        visorInpt.setText(a + "5");
+        addTextVisor("5");
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
-        String a = visorInpt.getText();
-        visorInpt.setText(a + "6");
+        addTextVisor("6");
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
-        String a = visorInpt.getText();
-        visorInpt.setText(a + "7");
+        addTextVisor("7");
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
-        String a = visorInpt.getText();
-        visorInpt.setText(a + "8");
+        addTextVisor("8");
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
-        String a = visorInpt.getText();
-        visorInpt.setText(a + "9");
+        addTextVisor("9");
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btnSumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSumaActionPerformed
-        String a = visorInpt.getText();
-        visorInpt.setText(a + "+");
+        addTextVisor("+");
     }//GEN-LAST:event_btnSumaActionPerformed
 
     private void btnRestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaActionPerformed
-        String a = visorInpt.getText();
-        visorInpt.setText(a + "-");
+        addTextVisor("-");
     }//GEN-LAST:event_btnRestaActionPerformed
 
     private void btnDividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDividirActionPerformed
-        String a = visorInpt.getText();
-        visorInpt.setText(a + "/");
+        addTextVisor("/");
     }//GEN-LAST:event_btnDividirActionPerformed
 
     private void btnMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiplicarActionPerformed
-        String a = visorInpt.getText();
-        visorInpt.setText(a + "*");
+        addTextVisor("*");
     }//GEN-LAST:event_btnMultiplicarActionPerformed
 
     private void btnParentesis1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnParentesis1ActionPerformed
-        String a = visorInpt.getText();
-        visorInpt.setText(a + "(");
+        addTextVisor("(");
     }//GEN-LAST:event_btnParentesis1ActionPerformed
 
     private void btnParentesis2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnParentesis2ActionPerformed
-        String a = visorInpt.getText();
-        visorInpt.setText(a + ")");
+        addTextVisor(")");
     }//GEN-LAST:event_btnParentesis2ActionPerformed
 
     private void esferaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esferaItemActionPerformed
@@ -706,12 +691,22 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnComaActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
-        String a = visorInpt.getText(); //TODO hacer que si hay ceros a la izq no se escriban infinitos
-        visorInpt.setText(a + "0");
+        addTextVisor("0");
     }//GEN-LAST:event_btn0ActionPerformed
 
+    private void addTextVisor(String txt){
+        String visor = visorInpt.getText();  
+        
+        if(visor.equals("0") || visor.isEmpty()){
+            visorInpt.setText(txt);
+        }else{
+            visorInpt.setText(visor + txt);
+        }
+    }
+    
     private void acercaDeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaDeItemActionPerformed
-        var v = new VistaAcercaDe();
+        setVisible(false);
+        var v = new VistaAcercaDe(this);
     }//GEN-LAST:event_acercaDeItemActionPerformed
 
     private void conversorItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conversorItemActionPerformed

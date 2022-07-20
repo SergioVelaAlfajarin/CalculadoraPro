@@ -8,16 +8,17 @@ import pro.calc.exception.CalcException;
 public class VistaConversor extends javax.swing.JFrame {
 
     private JFrame ventana;
+
     public VistaConversor(JFrame v) {
         initComponents();
         setIconImage();
         setLocationRelativeTo(null);
         setVisible(true);
         setTitle("Conversor");
-        ventana =v;
+        ventana = v;
     }
-    
-        private void setIconImage() {
+
+    private void setIconImage() {
         File f = new File("../resources/icon.png");
         if (!f.exists()) {
             f = new File("resources/icon.png");
@@ -56,6 +57,11 @@ public class VistaConversor extends javax.swing.JFrame {
 
         destinoCmbbx.setFont(new java.awt.Font("Yu Gothic Medium", 1, 16)); // NOI18N
         destinoCmbbx.setEnabled(false);
+        destinoCmbbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                destinoCmbbxActionPerformed(evt);
+            }
+        });
 
         tituloLbl.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
         tituloLbl.setText("Selector de conversor");
@@ -82,6 +88,7 @@ public class VistaConversor extends javax.swing.JFrame {
 
         indicadorLbl.setText("Cantidad a convertir:");
 
+        cantidadInpt.setEditable(false);
         cantidadInpt.setFont(new java.awt.Font("Cascadia Code", 1, 14)); // NOI18N
         cantidadInpt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,22 +177,31 @@ public class VistaConversor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cantidadInptActionPerformed
 
+    private void destinoCmbbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_destinoCmbbxActionPerformed
+        if(destinoCmbbx.getSelectedIndex() != 0){
+            cantidadInpt.setEditable(true);
+        }else{
+            cantidadInpt.setText("");
+            cantidadInpt.setEditable(false);
+        }
+    }//GEN-LAST:event_destinoCmbbxActionPerformed
+
     private void cambiarComboDestino(Integer selectedItem) {
         switch (selectedItem) {
             case 0 ->
                 rellenarComboDestino();
             case 1 ->
-                rellenarComboDestino("Dolares");
+                rellenarComboDestino("Selecciona...", "Dolares");
             case 2 ->
-                rellenarComboDestino("Euros");
+                rellenarComboDestino("Selecciona...","Euros");
             case 3 ->
-                rellenarComboDestino("Decimal", "Octal", "Hexadecimal");
+                rellenarComboDestino("Selecciona...","Decimal", "Octal", "Hexadecimal");
             case 4 ->
-                rellenarComboDestino("Binario", "Octal", "Hexadecimal");
+                rellenarComboDestino("Selecciona...","Selecciona...","Binario", "Octal", "Hexadecimal");
             case 5 ->
-                rellenarComboDestino("Decimal", "Octal", "Binario");
+                rellenarComboDestino("Selecciona...","Decimal", "Octal", "Binario");
             case 6 ->
-                rellenarComboDestino("Decimal", "Binario", "Hexadecimal");
+                rellenarComboDestino("Selecciona...","Decimal", "Binario", "Hexadecimal");
         }
     }
 
@@ -193,6 +209,8 @@ public class VistaConversor extends javax.swing.JFrame {
         destinoCmbbx.removeAllItems();
         if (elements.length == 0) {
             destinoCmbbx.setEnabled(false);
+            cantidadInpt.setText("");
+            cantidadInpt.setEditable(false);
         } else {
             destinoCmbbx.setEnabled(true);
             for (String e : elements) {
