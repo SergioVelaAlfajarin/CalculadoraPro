@@ -279,6 +279,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         visorInpt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         visorInpt.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         visorInpt.setEnabled(false);
+        visorInpt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visorInptActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
@@ -711,8 +716,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_acercaDeItemActionPerformed
 
     private void conversorItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conversorItemActionPerformed
+        setVisible(false);
         var v = new VistaConversor();
     }//GEN-LAST:event_conversorItemActionPerformed
+
+    private void visorInptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visorInptActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visorInptActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem acercaDeItem;
