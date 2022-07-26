@@ -1,12 +1,33 @@
 package pro.calc.vistas;
 
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import pro.calc.exception.CalcException;
+
 public class VistaAcercaDe extends javax.swing.JFrame {
 
-    public VistaAcercaDe() {
+    private javax.swing.JFrame v;
+
+    public VistaAcercaDe(JFrame v) {
+        this.v = v;
         initComponents();
+        setIconImage();
         setTitle("Acerca de...");
-        setVisible(true);
         setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    private void setIconImage() {
+        File f = new File("../resources/icon.png");
+        if (!f.exists()) {
+            f = new File("resources/icon.png");
+        }
+        if (!f.exists()) {
+            throw new CalcException("Icono no encontrado");
+        }
+        ImageIcon img = new ImageIcon(f.getAbsolutePath());
+        setIconImage(img.getImage());
     }
 
     @SuppressWarnings("unchecked")
@@ -22,6 +43,12 @@ public class VistaAcercaDe extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         jLabel1.setText("¿Quiénes forman parte de este proyecto?");
@@ -91,6 +118,11 @@ public class VistaAcercaDe extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        v.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

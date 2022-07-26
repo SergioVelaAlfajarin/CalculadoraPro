@@ -21,7 +21,7 @@ public abstract class GestorCalc {
         for (int i = 0; i < arrOperacion.length; i++) {
             char letra = arrOperacion[i];
             //si es un digito lo agrega al sb
-            if (Character.isDigit(letra)) {
+            if (Character.isDigit(letra) || letra == ',') {
                 sb.append(letra);
             } //si no, añade el valor que tenga el sb a la linkedlist si no esta vacio,
             //y añade la letra actual a la linkedlist. Por ultimo, resetea el sb
@@ -46,13 +46,17 @@ public abstract class GestorCalc {
 
     public static String calcularOperacion(String operacion) throws CalcException {
         setLista(operacion);
-        
+
         if (operacionList.isEmpty()) {
             throw new CalcException("Tienes que establecer la lista antes de calcular la operacion.");
         }
-        
-        String resultado = calcula(operacionList);
-        return resultado;
+
+        try {
+            String resultado = calcula(operacionList);
+            return resultado;
+        } catch (Exception e) {
+            throw new CalcException("Operacion mal formada");
+        }
     }
 
     private static String calcula(LinkedList<String> lista) {
@@ -95,8 +99,9 @@ public abstract class GestorCalc {
     private static int getPosPriParentesisCierre(int posApertura, LinkedList<String> lista) {
         for (int i = posApertura; i < lista.size(); i++) {
             String pos = lista.get(i);
-            if(pos.equals(")"))
+            if (pos.equals(")")) {
                 return i;
+            }
         }
         return -1;
     }
@@ -105,12 +110,12 @@ public abstract class GestorCalc {
         String numAnterior = lista.get(posSigno - 1);
         String numSiguiente = lista.get(posSigno + 1);
         String signo = lista.get(posSigno);
-        
+
         Operacion op = new Operacion(numAnterior, numSiguiente);
-        
+
         String res = op.calcular(signo);
         eliminaRango(lista, posSigno - 1, posSigno + 1);
-        
+
         lista.add(posSigno - 1, res);
     }
 
@@ -159,5 +164,5 @@ public abstract class GestorCalc {
         }
         return listaTemp;
     }
-    
+
 }
