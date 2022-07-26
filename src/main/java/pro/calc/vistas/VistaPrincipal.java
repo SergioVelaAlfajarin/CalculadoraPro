@@ -8,6 +8,9 @@ import pro.calc.gestor.*;
 
 public class VistaPrincipal extends javax.swing.JFrame {
 
+    private boolean calculado = false;
+    private String numAnterior;
+
     public void muestraWarning(Exception e) {
         JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
     }
@@ -526,15 +529,23 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cuadradoItemActionPerformed
 
     private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
-        try {
-            String operacion = visorInpt.getText();
-            String res = GestorCalc.calcularOperacion(operacion);
-            visorInpt.setText(
-                    String.format("%s=%s", visorInpt.getText(), res)
-            );
-        } catch (CalcException e) {
-            muestraWarning(e);
+        String operacion = visorInpt.getText();
+
+        if (operacion.length() >= 3 || operacion.contains("=")) {
+            try {
+                String res = GestorCalc.calcularOperacion(operacion);
+                visorInpt.setText(
+                        String.format("%s=%s", visorInpt.getText(), res)
+                );
+                numAnterior = res;
+                calculado = true;
+            } catch (CalcException e) {
+                muestraWarning(e);
+                visorInpt.setText("");
+            }
         }
+
+
     }//GEN-LAST:event_btnIgualActionPerformed
 
     private void trianguloItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trianguloItemActionPerformed
@@ -610,18 +621,30 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btnSumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSumaActionPerformed
+        if (calculado) {
+            addTextVisor(numAnterior);
+        }
         addTextVisor("+");
     }//GEN-LAST:event_btnSumaActionPerformed
 
     private void btnRestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaActionPerformed
+        if (calculado) {
+            addTextVisor(numAnterior);
+        }
         addTextVisor("-");
     }//GEN-LAST:event_btnRestaActionPerformed
 
     private void btnDividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDividirActionPerformed
+        if (calculado) {
+            addTextVisor(numAnterior);
+        }
         addTextVisor("/");
     }//GEN-LAST:event_btnDividirActionPerformed
 
     private void btnMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiplicarActionPerformed
+        if (calculado) {
+            addTextVisor(numAnterior);
+        }
         addTextVisor("*");
     }//GEN-LAST:event_btnMultiplicarActionPerformed
 
@@ -694,23 +717,28 @@ public class VistaPrincipal extends javax.swing.JFrame {
         addTextVisor("0");
     }//GEN-LAST:event_btn0ActionPerformed
 
-    private void addTextVisor(String txt){
-        String visor = visorInpt.getText();  
-        
-        if(visor.equals("0") || visor.isEmpty()){
+    private void addTextVisor(String txt) {
+        if (calculado) {
+            calculado = false;
+            visorInpt.setText("");
+        }
+
+        String visor = visorInpt.getText();
+
+        if (visor.equals("0") || visor.isEmpty()) {
             visorInpt.setText(txt);
-        }else{
+        } else {
             visorInpt.setText(visor + txt);
         }
     }
-    
+
     private void acercaDeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaDeItemActionPerformed
         setVisible(false);
         var v = new VistaAcercaDe(this);
     }//GEN-LAST:event_acercaDeItemActionPerformed
 
     private void conversorItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conversorItemActionPerformed
-        
+
         setVisible(false);
         var v = new VistaConversor(this);
     }//GEN-LAST:event_conversorItemActionPerformed
