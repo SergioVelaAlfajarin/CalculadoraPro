@@ -13,7 +13,7 @@ Objetivos de lanzamiento (version 1.0):
  - [ ] conectar con bbdd y ficheros para guardar todas las operaciones realizadas. <br/>
  - [ ] opcion limpiar todo el historial de operaciones. <br/>
  - [ ] opcion de limpiar todos los shortcuts. <br/>
- - [ ] opcion para enviar opiniones sobre la calculadora. <br/>
+ - [x] opcion para enviar opiniones sobre la calculadora. <br/>
  - [x] boton acerca de... <br/>
  - [ ] exportar operaciones a un .txt <br/>
  

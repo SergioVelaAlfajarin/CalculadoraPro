@@ -80,6 +80,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         conversorItem = new javax.swing.JMenuItem();
         ayudaMenu = new javax.swing.JMenu();
         acercaDeItem = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calculadora Pro");
@@ -397,6 +398,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         opcionesItem.setText("Opciones...");
         opcionesItem.setIconTextGap(0);
+        opcionesItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcionesItemActionPerformed(evt);
+            }
+        });
         archivoMenu.add(opcionesItem);
 
         salirItem.setText("Salir");
@@ -498,6 +504,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
         ayudaMenu.add(acercaDeItem);
+
+        jMenuItem1.setText("Danos tu opinión");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        ayudaMenu.add(jMenuItem1);
 
         barraMenu.add(ayudaMenu);
 
@@ -747,6 +761,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_visorInptActionPerformed
 
+    private void opcionesItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionesItemActionPerformed
+
+        var v = new VistaOpciones();
+
+    }//GEN-LAST:event_opcionesItemActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        var v = new VistaDanosTuOpinion(this);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem acercaDeItem;
     private javax.swing.JMenu archivoMenu;
@@ -781,6 +805,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem cuboItem;
     private javax.swing.JMenuItem esferaItem;
     private javax.swing.JMenuItem exportarItem;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem maxItem;
     private javax.swing.JMenuItem minItem;
     private javax.swing.JMenuItem opcionesItem;
