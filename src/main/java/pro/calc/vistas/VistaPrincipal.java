@@ -27,7 +27,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         color = c;
         cambia = c;
         cambiaColor(c);
-
+        visorInpt.setText("5+2*(73/(54-33))-2");
     }
 
 private void cambiaColor(int c) {
