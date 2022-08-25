@@ -1,20 +1,26 @@
 package pro.calc.vistas;
 
+import java.awt.Color;
+import java.io.File;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import pro.calc.exception.CalcException;
+
 
 public class VistaDanosTuOpinion extends javax.swing.JFrame {
     
     JFrame ventana;
     
-    public VistaDanosTuOpinion(JFrame v) {
+    public VistaDanosTuOpinion(JFrame v,int c) {
         initComponents();
         setTitle("Danos tu opinion");
         setVisible(true);
         setLocationRelativeTo(null);
         ventana = v;
         jTextArea1.setText("");
+        setIconImage();
+        cambiaColor(c);
     }
     
     @SuppressWarnings("unchecked")
@@ -98,12 +104,49 @@ public class VistaDanosTuOpinion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cambiaColor(int c) {
+    if (c == 1) {
+        getContentPane().setBackground(Color.RED);
+        jPanel1.setBackground(Color.RED);
+    } else if (c == 2) {
+        getContentPane().setBackground(Color.GRAY);
+        jPanel1.setBackground(Color.GRAY);
+    } else if (c == 3) {
+        getContentPane().setBackground(Color.WHITE);
+        jPanel1.setBackground(Color.WHITE);
+    } else if (c == 4) {
+        getContentPane().setBackground(Color.GREEN);
+        jPanel1.setBackground(Color.GREEN);
+    } else if (c == 5) {
+        getContentPane().setBackground(Color.YELLOW);
+        jPanel1.setBackground(Color.YELLOW);
+    } else if (c == 6) {
+        getContentPane().setBackground(Color.BLUE);
+        jPanel1.setBackground(Color.BLUE);
+    }
+}
+    
+    
+     private void setIconImage() {
+        File f = new File("../resources/icon.png");
+        if (!f.exists()) {
+            f = new File("resources/icon.png");
+        }
+        if (!f.exists()) {
+            throw new CalcException("Icono no encontrado");
+        }
+        ImageIcon img = new ImageIcon(f.getAbsolutePath());
+        setIconImage(img.getImage());
+    }
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         if (jTextArea1.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No se ha introducido ningun texto.");
         } else {
             JOptionPane.showMessageDialog(null, "Se ha enviado satisfactoriamente.");
+            jTextArea1.setText("");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

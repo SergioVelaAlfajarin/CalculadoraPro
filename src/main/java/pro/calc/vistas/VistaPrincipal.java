@@ -1,5 +1,6 @@
 package pro.calc.vistas;
 
+import java.awt.Color;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -15,13 +16,41 @@ public class VistaPrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
     }
 
-    public VistaPrincipal() {
+    private int cambia;
+
+    public VistaPrincipal(int c) {
         initComponents();
         setIconImage();
         setVisible(true);
         setLocationRelativeTo(null);
+        int color;
+        color = c;
+        cambia = c;
+        cambiaColor(c);
         visorInpt.setText("5+2*(73/(54-33))-2");
     }
+
+private void cambiaColor(int c) {
+    if (c == 1) {
+        getContentPane().setBackground(Color.RED);
+        panelPrincipal.setBackground(Color.RED);
+    } else if (c == 2) {
+        getContentPane().setBackground(Color.GRAY);
+        panelPrincipal.setBackground(Color.GRAY);
+    } else if (c == 3) {
+        getContentPane().setBackground(Color.WHITE);
+        panelPrincipal.setBackground(Color.WHITE);
+    } else if (c == 4) {
+        getContentPane().setBackground(Color.GREEN);
+        panelPrincipal.setBackground(Color.GREEN);
+    } else if (c == 5) {
+        getContentPane().setBackground(Color.YELLOW);
+        panelPrincipal.setBackground(Color.YELLOW);
+    } else if (c == 6) {
+        getContentPane().setBackground(Color.BLUE);
+        panelPrincipal.setBackground(Color.BLUE);
+    }
+}
 
     private void setIconImage() {
         File f = new File("../resources/icon.png");
@@ -64,9 +93,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         barraMenu = new javax.swing.JMenuBar();
         archivoMenu = new javax.swing.JMenu();
         exportarItem = new javax.swing.JMenuItem();
-        tamanoMenu = new javax.swing.JMenu();
-        maxItem = new javax.swing.JMenuItem();
-        minItem = new javax.swing.JMenuItem();
         opcionesItem = new javax.swing.JMenuItem();
         salirItem = new javax.swing.JMenuItem();
         avanzadosMenu = new javax.swing.JMenu();
@@ -382,20 +408,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         exportarItem.setText("Exportar txt");
         exportarItem.setIconTextGap(0);
         archivoMenu.add(exportarItem);
-
-        tamanoMenu.setText("Tamaño");
-        tamanoMenu.setIconTextGap(0);
-
-        maxItem.setText("Maximo");
-        maxItem.setIconTextGap(0);
-        tamanoMenu.add(maxItem);
-
-        minItem.setText("Minimo");
-        minItem.setEnabled(false);
-        minItem.setIconTextGap(0);
-        tamanoMenu.add(minItem);
-
-        archivoMenu.add(tamanoMenu);
 
         opcionesItem.setText("Opciones...");
         opcionesItem.setIconTextGap(0);
@@ -749,13 +761,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void acercaDeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaDeItemActionPerformed
         setVisible(false);
-        var v = new VistaAcercaDe(this);
+        var v = new VistaAcercaDe(this,cambia);
     }//GEN-LAST:event_acercaDeItemActionPerformed
 
     private void conversorItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conversorItemActionPerformed
 
         setVisible(false);
-        var v = new VistaConversor(this);
+        var v = new VistaConversor(this, cambia);
     }//GEN-LAST:event_conversorItemActionPerformed
 
     private void visorInptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visorInptActionPerformed
@@ -763,13 +775,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_visorInptActionPerformed
 
     private void opcionesItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionesItemActionPerformed
-
-        var v = new VistaOpciones();
+        setVisible(false);
+        var v = new VistaOpciones(this);
 
     }//GEN-LAST:event_opcionesItemActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        var v = new VistaDanosTuOpinion(this);
+
+        setVisible(false);
+        var v = new VistaDanosTuOpinion(this,cambia);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -807,12 +821,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem esferaItem;
     private javax.swing.JMenuItem exportarItem;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem maxItem;
-    private javax.swing.JMenuItem minItem;
     private javax.swing.JMenuItem opcionesItem;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JMenuItem salirItem;
-    private javax.swing.JMenu tamanoMenu;
     private javax.swing.JMenuItem trianguloItem;
     private javax.swing.JTextField visorInpt;
     private javax.swing.JMenu volumenMenu;

@@ -1,5 +1,6 @@
 package pro.calc.vistas;
 
+import java.awt.Color;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -9,15 +10,39 @@ public class VistaAcercaDe extends javax.swing.JFrame {
 
     private javax.swing.JFrame v;
 
-    public VistaAcercaDe(JFrame v) {
+    public VistaAcercaDe(JFrame v,int c) {
         this.v = v;
         initComponents();
         setIconImage();
         setTitle("Acerca de...");
         setLocationRelativeTo(null);
         setVisible(true);
+        cambiaColor(c);
     }
 
+    private void cambiaColor(int c) {
+    if (c == 1) {
+        getContentPane().setBackground(Color.RED);
+        jPanel1.setBackground(Color.RED);
+    } else if (c == 2) {
+        getContentPane().setBackground(Color.GRAY);
+        jPanel1.setBackground(Color.GRAY);
+    } else if (c == 3) {
+        getContentPane().setBackground(Color.WHITE);
+        jPanel1.setBackground(Color.WHITE);
+    } else if (c == 4) {
+        getContentPane().setBackground(Color.GREEN);
+        jPanel1.setBackground(Color.GREEN);
+    } else if (c == 5) {
+        getContentPane().setBackground(Color.YELLOW);
+        jPanel1.setBackground(Color.YELLOW);
+    } else if (c == 6) {
+        getContentPane().setBackground(Color.BLUE);
+        jPanel1.setBackground(Color.BLUE);
+    }
+}
+    
+    
     private void setIconImage() {
         File f = new File("../resources/icon.png");
         if (!f.exists()) {

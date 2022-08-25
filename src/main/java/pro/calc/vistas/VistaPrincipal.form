@@ -15,27 +15,6 @@
                 <Property name="iconTextGap" type="int" value="0"/>
               </Properties>
             </MenuItem>
-            <Menu class="javax.swing.JMenu" name="tamanoMenu">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Tama&#xf1;o"/>
-                <Property name="iconTextGap" type="int" value="0"/>
-              </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="maxItem">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Maximo"/>
-                    <Property name="iconTextGap" type="int" value="0"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="minItem">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Minimo"/>
-                    <Property name="enabled" type="boolean" value="false"/>
-                    <Property name="iconTextGap" type="int" value="0"/>
-                  </Properties>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
             <MenuItem class="javax.swing.JMenuItem" name="opcionesItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Opciones..."/>
