@@ -1,5 +1,6 @@
 package pro.calc.vistas;
 
+import java.awt.Color;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -9,15 +10,39 @@ public class VistaConversor extends javax.swing.JFrame {
 
     private JFrame ventana;
 
-    public VistaConversor(JFrame v) {
+    public VistaConversor(JFrame v, int c) {
         initComponents();
         setIconImage();
         setLocationRelativeTo(null);
         setVisible(true);
         setTitle("Conversor");
         ventana = v;
+        cambiaColor(c);
     }
 
+    
+    private void cambiaColor(int c) {
+        if (c == 1) {
+            getContentPane().setBackground(Color.RED);
+            panelPrincipal.setBackground(Color.RED);
+        } else if (c == 2) {
+            getContentPane().setBackground(Color.GRAY);
+            panelPrincipal.setBackground(Color.GRAY);
+        } else if (c == 3) {
+            getContentPane().setBackground(Color.WHITE);
+            panelPrincipal.setBackground(Color.WHITE);
+        } else if (c == 4) {
+            getContentPane().setBackground(Color.GREEN);
+            panelPrincipal.setBackground(Color.GREEN);
+        } else if (c == 5) {
+            getContentPane().setBackground(Color.YELLOW);
+            panelPrincipal.setBackground(Color.YELLOW);
+        } else if (c == 6) {
+            getContentPane().setBackground(Color.BLUE);
+            panelPrincipal.setBackground(Color.BLUE);
+        }
+    }
+    
     private void setIconImage() {
         File f = new File("../resources/icon.png");
         if (!f.exists()) {
