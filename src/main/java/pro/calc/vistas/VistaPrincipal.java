@@ -20,6 +20,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         setIconImage();
         setVisible(true);
         setLocationRelativeTo(null);
+        visorInpt.setText("5+2*(73/(54-33))-2");
     }
 
     private void setIconImage() {

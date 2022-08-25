@@ -1,6 +1,5 @@
 package pro.calc.main;
 
-import java.io.File;
 import pro.calc.vistas.VistaPrincipal;
 
 public class Calculadora {
