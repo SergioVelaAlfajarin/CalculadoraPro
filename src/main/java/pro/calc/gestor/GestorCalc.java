@@ -5,11 +5,11 @@ import java.util.ListIterator;
 import pro.calc.exception.CalcException;
 import pro.calc.modelo.Operacion;
 
-public abstract class GestorCalc {
+public abstract class GestorCalc {//TODO CAMBIAR ESTE METODO ENTERO
 
     private static LinkedList<String> operacionList = new LinkedList<>();
 
-    private static void setLista(String operacion) {//TODO este metodo y usar clase operacion.
+    private static void setLista(String operacion) {
         operacionList = divideOperacion(operacion);
     }
 
