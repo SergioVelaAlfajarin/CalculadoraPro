@@ -2,6 +2,9 @@ package pro.calc.vistas;
 
 import java.awt.Color;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import pro.calc.exception.CalcException;
@@ -407,6 +410,11 @@ private void cambiaColor(int c) {
 
         exportarItem.setText("Exportar txt");
         exportarItem.setIconTextGap(0);
+        exportarItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportarItemActionPerformed(evt);
+            }
+        });
         archivoMenu.add(exportarItem);
 
         opcionesItem.setText("Opciones...");
@@ -715,6 +723,8 @@ private void cambiaColor(int c) {
     }//GEN-LAST:event_salirItemActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+       //Al salir borrara el fichero creado y aparecera vacio
+        GestorTXT.crearfichero();
         dispose();
         //cerrar bbdd
         System.exit(0);
@@ -785,6 +795,14 @@ private void cambiaColor(int c) {
         setVisible(false);
         var v = new VistaDanosTuOpinion(this,cambia);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void exportarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportarItemActionPerformed
+        try {
+            GestorTXT.exportarFichero();
+        } catch (IOException ex) {
+            Logger.getLogger("Error");
+        }
+    }//GEN-LAST:event_exportarItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem acercaDeItem;
