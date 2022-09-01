@@ -1,33 +1,63 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package pro.calc.modelo;
 
-/**
- *
- * @author sergi
- */
+import java.util.InputMismatchException;
+import pro.calc.exception.CalcException;
+
 public class Operacion {
-    public Operacion() {}
 
-    private String first;
-    private String second;
-    private Signos signo;
-    
-    public void setFirstNumber(String n) {
-        first = n;
+    double num1;
+    double num2;
+
+    public Operacion() {
+        num1 = 0;
+        num2 = 0;
     }
 
-    public void setSecondNuber(String n) {
-        second = n;
+    public Operacion(String num1, String num2) throws CalcException {
+        try {
+            this.num1 = Double.parseDouble(num1.replace(",", "."));
+            this.num2 = Double.parseDouble(num2.replace(",", "."));
+        } catch (InputMismatchException e) {
+            throw new CalcException("No es un numero");
+        }
     }
-    
-    public void setSigno(Signos s){
-        signo = s;
+
+    public Operacion(double num1, double num2) {
+        this.num1 = num1;
+        this.num2 = num2;
     }
-    
-    public char[] getResult(){
-        return null;
+
+    public void setNum1(double num1) {
+        this.num1 = num1;
+    }
+
+    public void setNum2(double num2) {
+        this.num2 = num2;
+    }
+
+    public double getNum1() {
+        return num1;
+    }
+
+    public double getNum2() {
+        return num2;
+    }
+
+    public String calcular(String signo) {
+        String resultado; 
+        switch (signo) {
+            case "+" ->
+                resultado = String.format("%.2f", num1 + num2);
+            case "-" ->
+                resultado =String.format("%.2f", num1 - num2);
+            case "/" ->
+                resultado =String.format("%.2f", num1 / num2);
+            case "*" ->
+               resultado = String.format("%.2f", num1 * num2);
+            default ->
+                throw new CalcException("Signo incorrecto");
+        }
+        resultado = resultado.replace(",00", "");
+        return resultado;
     }
 }

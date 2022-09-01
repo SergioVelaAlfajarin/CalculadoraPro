@@ -16,7 +16,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
     }
 
-    private int cambia;
+    private final int cambia;
 
     public VistaPrincipal(int c) {
         initComponents();
@@ -30,27 +30,27 @@ public class VistaPrincipal extends javax.swing.JFrame {
         visorInpt.setText("5+2*(73/(54-33))-2");
     }
 
-private void cambiaColor(int c) {
-    if (c == 1) {
-        getContentPane().setBackground(Color.RED);
-        panelPrincipal.setBackground(Color.RED);
-    } else if (c == 2) {
-        getContentPane().setBackground(Color.GRAY);
-        panelPrincipal.setBackground(Color.GRAY);
-    } else if (c == 3) {
-        getContentPane().setBackground(Color.WHITE);
-        panelPrincipal.setBackground(Color.WHITE);
-    } else if (c == 4) {
-        getContentPane().setBackground(Color.GREEN);
-        panelPrincipal.setBackground(Color.GREEN);
-    } else if (c == 5) {
-        getContentPane().setBackground(Color.YELLOW);
-        panelPrincipal.setBackground(Color.YELLOW);
-    } else if (c == 6) {
-        getContentPane().setBackground(Color.BLUE);
-        panelPrincipal.setBackground(Color.BLUE);
+    private void cambiaColor(int c) {
+        if (c == 1) {
+            getContentPane().setBackground(Color.RED);
+            panelPrincipal.setBackground(Color.RED);
+        } else if (c == 2) {
+            getContentPane().setBackground(Color.GRAY);
+            panelPrincipal.setBackground(Color.GRAY);
+        } else if (c == 3) {
+            getContentPane().setBackground(Color.WHITE);
+            panelPrincipal.setBackground(Color.WHITE);
+        } else if (c == 4) {
+            getContentPane().setBackground(Color.GREEN);
+            panelPrincipal.setBackground(Color.GREEN);
+        } else if (c == 5) {
+            getContentPane().setBackground(Color.YELLOW);
+            panelPrincipal.setBackground(Color.YELLOW);
+        } else if (c == 6) {
+            getContentPane().setBackground(Color.BLUE);
+            panelPrincipal.setBackground(Color.BLUE);
+        }
     }
-}
 
     private void setIconImage() {
         File f = new File("../resources/icon.png");
@@ -557,22 +557,26 @@ private void cambiaColor(int c) {
 
     private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
         String operacion = visorInpt.getText();
-
-        if (operacion.length() >= 3 || operacion.contains("=")) {
-            try {
-                String res = GestorCalc.calcularOperacion(operacion);
-                visorInpt.setText(
-                        String.format("%s=%s", visorInpt.getText(), res)
-                );
-                numAnterior = res;
-                calculado = true;
-            } catch (CalcException e) {
-                muestraWarning(e);
-                visorInpt.setText("");
-            }
+        if (operacion.length() < 3) {
+            return;
         }
 
+        if (operacion.contains("=") || calculado) {
+            visorInpt.setText(numAnterior);
+            return;
+        }
 
+        try {
+            String res = GestorCalc.calcularOperacion(operacion);
+            visorInpt.setText(
+                    String.format("%s=%s", operacion, res)
+            );
+            numAnterior = res;
+            calculado = true;
+        } catch (CalcException e) {
+            muestraWarning(e);
+            visorInpt.setText("");
+        }
     }//GEN-LAST:event_btnIgualActionPerformed
 
     private void trianguloItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trianguloItemActionPerformed
@@ -722,6 +726,8 @@ private void cambiaColor(int c) {
 
     private void btnBorrarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarTodoActionPerformed
         visorInpt.setText("");
+        calculado = false;
+        numAnterior = "";
     }//GEN-LAST:event_btnBorrarTodoActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
@@ -761,7 +767,7 @@ private void cambiaColor(int c) {
 
     private void acercaDeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaDeItemActionPerformed
         setVisible(false);
-        var v = new VistaAcercaDe(this,cambia);
+        var v = new VistaAcercaDe(this, cambia);
     }//GEN-LAST:event_acercaDeItemActionPerformed
 
     private void conversorItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conversorItemActionPerformed
@@ -783,7 +789,7 @@ private void cambiaColor(int c) {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
 
         setVisible(false);
-        var v = new VistaDanosTuOpinion(this,cambia);
+        var v = new VistaDanosTuOpinion(this, cambia);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

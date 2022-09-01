@@ -4,116 +4,165 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 import pro.calc.exception.CalcException;
 import pro.calc.modelo.Operacion;
-import pro.calc.modelo.Signos;
 
-public abstract class GestorCalc {
+public abstract class GestorCalc {//TODO CAMBIAR ESTE METODO ENTERO
 
-    public static String calcularOperacion(String operacion) {
-        LinkedList<Character> list = separarOperacion(operacion);
-        Operacion resultado = calcula(list);
-        return null;
+    private static LinkedList<String> operacionList = new LinkedList<>();
+
+    private static void setLista(String operacion) {
+        operacionList = divideOperacion(operacion);
     }
 
-    /**
-     * separa la operacion
-     *
-     * @param operacion
-     * @return
-     */
-    private static LinkedList<Character> separarOperacion(String operacion) {
-        int oplength = operacion.length();
-        LinkedList<Character> list = new LinkedList<>();
-        for (int i = 0; i < oplength; i++) {
-            list.addLast(operacion.charAt(i));
-        }
-        print(list);
-        return list;
-    }
+    private static LinkedList divideOperacion(String operacion) {
+        var opDividida = new LinkedList<String>();
+        var arrOperacion = operacion.toCharArray();
+        var sb = new StringBuilder();
 
-    private static Operacion calcula(LinkedList<Character> list) {
-        int parentesisA = list.lastIndexOf('(');
-
-        if (parentesisA >= 0) {//parentesis found
-            int parentesisB = getSiguienteParentesisCierre(parentesisA, list);
-            //parentesis found - any error throwed
-            LinkedList<Character> sublist = (LinkedList<Character>) list.subList(parentesisA, parentesisB);
-
-            Operacion op = calcula(sublist);
-
-            eliminaPos(list, parentesisA, parentesisB);
-
-            //agregar resultado a la lista original
-        }
-        //si no hay parentesis recorrera la lista calculando y resolviendo
-
-        for (int i = 0; i < list.size(); i++) {
-            char ca = list.get(i);
-            if (ca == '*' || ca == '/') {
-
-                StringBuilder sb1 = new StringBuilder();
-                
-                for (int j = i - 1; j >= 0; j--) {
-                    char cb = list.get(j);
-                    if(Character.isDigit(cb) || cb == ','){
-                        sb1.append(cb);
-                    }else{
-                        break;
-                    }
+        for (int i = 0; i < arrOperacion.length; i++) {
+            char letra = arrOperacion[i];
+            //si es un digito lo agrega al sb
+            if (Character.isDigit(letra) || letra == ',') {
+                sb.append(letra);
+            } //si no, añade el valor que tenga el sb a la linkedlist si no esta vacio,
+            //y añade la letra actual a la linkedlist. Por ultimo, resetea el sb
+            else {
+                String anterior = sb.toString();
+                if (!anterior.isEmpty()) {
+                    opDividida.addLast(anterior);
                 }
-                
-                sb1.reverse();
-
-                StringBuilder sb2 = new StringBuilder();
-                
-                for (int j = i + 1; j < list.size(); j++) {
-                    char cb = list.get(j);
-                    if(Character.isDigit(cb) || cb == ','){
-                        sb2.append(cb);
-                    }else{
-                        break;
-                    }
-                }
-                
-                Operacion operacion = new Operacion();
-                
-                operacion.setFirstNumber(sb1.toString());
-                operacion.setSecondNuber(sb2.toString());
-                
-                switch(ca){
-                    case '*' -> operacion.setSigno(Signos.MULTIPLICACION);
-                    case '/' -> operacion.setSigno(Signos.DIVISION);
-                }
-                
-                //signo found
-                //recorrer hacia delante y hacia atras,
-                //obteniendo todo que sea un numero o una coma/punto
-                //si no lo es terminara de recorrerlo y se lo agregara a un obj tipo operacion
+                opDividida.addLast(letra + "");
+                sb = new StringBuilder();
             }
         }
 
-        return null;
+        //comprueba si ha quedado algun valor sobrante en el sb
+        //y si es asi lo añade a la linkedlist
+        String resto = sb.toString();
+        if (!resto.isEmpty()) {
+            opDividida.addLast(resto);
+        }
+        return opDividida;
     }
 
-    private static void eliminaPos(LinkedList<Character> list, int parentesisA, int parentesisB) {
-        for (int i = 0; i < list.size(); i++) {
-            if (i >= parentesisA || i <= parentesisB) {
-                list.remove(i);
+    public static String calcularOperacion(String operacion) throws CalcException {
+        setLista(operacion);
+
+        if (operacionList.isEmpty()) {
+            throw new CalcException("Tienes que establecer la lista antes de calcular la operacion.");
+        }
+
+        try {
+            String resultado = calcula(operacionList);
+            return resultado;
+        } catch (Exception e) {
+            throw new CalcException("Operacion mal formada");
+        }
+    }
+
+    private static String calcula(LinkedList<String> lista) {
+        int ultimoParAper = getPosUltParentesisApertura(lista);
+
+        if (ultimoParAper >= 0) {
+            int primerParCier = getPosPriParentesisCierre(ultimoParAper, lista);
+            if (primerParCier < 0) {
+                throw new CalcException("Operacion mal formada");
+            }
+
+            LinkedList<String> subLista = obtenerSubLista(lista, ultimoParAper, primerParCier);
+            String resParentesis = calcula(subLista);
+            eliminaRango(lista, ultimoParAper, primerParCier);
+            lista.add(ultimoParAper, resParentesis);
+
+            return calcula(lista);
+        } else {
+            boolean haySimbolos = haySimbolos(lista, "*", "/");
+            while (haySimbolos) {
+                int posPrimerSigno = getPosPrimerSigno(lista, "*", "/");
+                realizaOperacion(lista, posPrimerSigno);
+                haySimbolos = haySimbolos(lista, "*", "/");
+            }
+            haySimbolos = haySimbolos(lista, "+", "-");
+            while (haySimbolos) {
+                int posPrimerSigno = getPosPrimerSigno(lista, "+", "-");
+                realizaOperacion(lista, posPrimerSigno);
+                haySimbolos = haySimbolos(lista, "-", "+");
             }
         }
+
+        return lista.getFirst();
     }
 
-    private static void print(LinkedList<Character> l) {
-        for (char c : l) {
-            System.out.println(c);
-        }
+    private static int getPosUltParentesisApertura(LinkedList<String> lista) {
+        return lista.lastIndexOf("(");
     }
 
-    private static int getSiguienteParentesisCierre(int parentesisA, LinkedList<Character> list) {
-        for (int i = parentesisA; i < list.size(); i++) {
-            if (list.get(i) == ')') {
+    private static int getPosPriParentesisCierre(int posApertura, LinkedList<String> lista) {
+        for (int i = posApertura; i < lista.size(); i++) {
+            String pos = lista.get(i);
+            if (pos.equals(")")) {
                 return i;
             }
         }
-        throw new CalcException("Operacion mal formada");
+        return -1;
     }
+
+    private static void realizaOperacion(LinkedList<String> lista, int posSigno) {
+        String numAnterior = lista.get(posSigno - 1);
+        String numSiguiente = lista.get(posSigno + 1);
+        String signo = lista.get(posSigno);
+
+        Operacion op = new Operacion(numAnterior, numSiguiente);
+
+        String res = op.calcular(signo);
+        eliminaRango(lista, posSigno - 1, posSigno + 1);
+
+        lista.add(posSigno - 1, res);
+    }
+
+    private static void eliminaRango(LinkedList<String> lista, int primer, int ultimo) {
+        ListIterator<String> it = lista.listIterator();
+        int contador = 0;
+        while (it.hasNext()) {
+            it.next();
+            if (contador >= primer && contador <= ultimo) {
+                it.remove();
+            }
+            contador++;
+        }
+    }
+
+    private static boolean haySimbolos(LinkedList<String> lista, String... simbolos) {
+        for (String element : lista) {
+            for (String sim : simbolos) {
+                if (element.equals(sim)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private static int getPosPrimerSigno(LinkedList<String> lista, String... simbolos) {
+        for (int i = 0; i < lista.size(); i++) {
+            for (String sim : simbolos) {
+                if (lista.get(i).equals(sim)) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+    private static LinkedList<String> obtenerSubLista(LinkedList<String> lista, int inicio, int fin) {
+        LinkedList<String> listaTemp = new LinkedList<>();
+        int counter = 0;
+        for (String s : lista) {
+            if (inicio < counter && counter < fin) {
+                listaTemp.addLast(s);
+            }
+            counter++;
+        }
+        return listaTemp;
+    }
+
 }
