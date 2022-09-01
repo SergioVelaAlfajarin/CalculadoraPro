@@ -9,6 +9,25 @@ package pro.calc.modelo;
  * @author sergi
  */
 public class Operacion {
+    public Operacion() {}
 
+    private String first;
+    private String second;
+    private Signos signo;
     
+    public void setFirstNumber(String n) {
+        first = n;
+    }
+
+    public void setSecondNuber(String n) {
+        second = n;
+    }
+    
+    public void setSigno(Signos s){
+        signo = s;
+    }
+    
+    public char[] getResult(){
+        return null;
+    }
 }
