@@ -7,10 +7,13 @@ import pro.calc.vistas.VistaPrincipal;
 public class Calculadora {
 
     public static void main(String[] args) {
+        /*
         Conectar conn = conexion();
         GestorTXT.crearfichero();
         GestorXAMP.
-        int color =0;
+         */
+        
+        int color = 0;
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {

@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 
 public class GestorTXT {
 
@@ -22,7 +23,7 @@ public class GestorTXT {
             if (!file.exists()) {
                 file.createNewFile();
             }
-            FileWriter fw = new FileWriter(file);
+           FileWriter fw = new FileWriter(file, StandardCharsets.UTF_8, true);
             BufferedWriter bw = new BufferedWriter(fw);
             // bw.write(contenido);
             bw.close();

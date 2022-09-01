@@ -800,7 +800,7 @@ private void cambiaColor(int c) {
         try {
             GestorTXT.exportarFichero();
         } catch (IOException ex) {
-            Logger.getLogger("Error");
+            System.out.println("Error:" + ex.getMessage());
         }
     }//GEN-LAST:event_exportarItemActionPerformed
 
