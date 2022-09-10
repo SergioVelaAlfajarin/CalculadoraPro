@@ -1,12 +1,60 @@
-
 package pro.calc.gestor;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import pro.calc.exception.CalcException;
 
 public class GestorBD {
 
-    
-    
-    public static void escribeOperacion(String resFormatted) {
-        
+    //Creamos la conexion
+    private static Connection conexion;
+
+    //Lo iniciamos con la bbdd
+    public static void init(
+            String usuario,
+            String contrasena,
+            String bbdd,
+            String url
+    ) throws CalcException {
+        try {
+            conexion = DriverManager.getConnection(url + bbdd, usuario, contrasena);
+        } catch (SQLException ex) {
+            throw new CalcException(ex.getMessage());
+        }
     }
-    
+
+    public static int escribeOperacion(String resFormatted) throws CalcException {
+
+        String[] array = resFormatted.split("=");
+
+        if (conexion == null) {
+            throw new CalcException("La base de datos no esta inicializada.");
+        }
+        try {
+            PreparedStatement ps = conexion.prepareStatement("INSERT INTO operaciones (operacion, resultado) VALUES(?,?);");
+
+            ps.setString(1, array[0]);
+            ps.setString(2, array[1]);
+
+            int resultado = ps.executeUpdate(); //guarda el resultado
+            ps.close(); //cierra el preparedstatement
+            return resultado; //devuelve el resultado
+        } catch (SQLException ex) {
+            throw new CalcException(ex.getMessage());
+        }
+
+    }
+
+    public void close() throws CalcException {
+        if (conexion != null) {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                throw new CalcException(e.getMessage());
+            }
+        }
+    }
+
 }

@@ -1,17 +1,14 @@
 package pro.calc.main;
 
+import pro.calc.gestor.GestorBD;
 import pro.calc.gestor.GestorTXT;
-import pro.calc.gestor.GestorXAMP;
 import pro.calc.vistas.VistaPrincipal;
 
 public class Calculadora {
 
     public static void main(String[] args) {
-        /*
-        Conectar conn = conexion();
-        GestorTXT.crearfichero();
-        GestorXAMP.
-         */
+        //Accedemos a la bbdd
+        GestorBD.init("user", "1234", "operaciones", "jdbc:mysql://127.0.0.1:3306/");
         
         int color = 0;
         try {
