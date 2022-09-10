@@ -576,9 +576,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         try {
             String res = GestorCalc.calcularOperacion(operacion);
-            visorInpt.setText(
-                    String.format("%s=%s", operacion, res)
-            );
+            String resFormatted =  String.format("%s=%s", operacion, res);
+            visorInpt.setText(resFormatted);
+            
+            GestorTXT.escribeOperacion(resFormatted);
+            GestorBD.escribeOperacion(resFormatted);
+                    
             numAnterior = res;
             calculado = true;
         } catch (CalcException e) {
