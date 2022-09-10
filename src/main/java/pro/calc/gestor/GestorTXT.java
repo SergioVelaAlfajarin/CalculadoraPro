@@ -57,4 +57,8 @@ public class GestorTXT {
         }
 
     }
+
+    public static void escribeOperacion(String resFormatted) {
+        
+    }
 }
