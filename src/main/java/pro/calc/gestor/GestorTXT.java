@@ -53,10 +53,12 @@ public class GestorTXT {
 
     public static void escribeOperacion(String resFormatted) {
         try {
-            String ruta = "operaciones/historial.txt";
-            //Para escribir            
+            File folder = new File("operaciones"); 
+            if(!folder.exists()){
+                folder.mkdir();
+            }  
+            File file = new File(folder.getAbsolutePath() + "/" + "historial.txt");
             String contenido = resFormatted + "\n";
-            File file = new File(ruta);
             // Si el archivo no existe es creado
             if (!file.exists()) {
                 file.createNewFile();

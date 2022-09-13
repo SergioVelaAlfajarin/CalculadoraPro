@@ -133,7 +133,7 @@ public class VistaDanosTuOpinion extends javax.swing.JFrame {
             f = new File("resources/icon.png");
         }
         if (!f.exists()) {
-            throw new CalcException("Icono no encontrado");
+            return;
         }
         ImageIcon img = new ImageIcon(f.getAbsolutePath());
         setIconImage(img.getImage());

@@ -26,7 +26,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         setIconImage();
         setVisible(true);
         setLocationRelativeTo(null);
-        visorInpt.setText("5+2*(73/(54-33))-2");
+        //visorInpt.setText("5+2*(73/(54-33))-2");
     }
 
     public void cambiaColor(int c) {
@@ -67,7 +67,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             f = new File("resources/icon.png");
         }
         if (!f.exists()) {
-            throw new CalcException("Icono no encontrado");
+            return;
         }
         ImageIcon img = new ImageIcon(f.getAbsolutePath());
         setIconImage(img.getImage());
