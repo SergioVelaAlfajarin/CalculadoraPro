@@ -50,15 +50,11 @@ public class GestorBD {
     }
 
     private static int sumarID() throws CalcException {
-        if (conexion == null) {
-            throw new CalcException("La base de datos no esta inicializada.");
-        }
         PreparedStatement ps = null;
         try {
-            ps = conexion.prepareStatement("SELECT * FROM pedidos;");
+            ps = conexion.prepareStatement("SELECT * FROM operaciones;");
             ResultSet rs = ps.executeQuery();
-            int rows = 0;
-            int clmns = rs.getMetaData().getColumnCount();
+            int rows = 1;
             while (rs.next()) {
                 rows++;
             }
@@ -66,14 +62,8 @@ public class GestorBD {
         } catch (SQLException ex) {
             throw new CalcException(ex.getMessage());
         }
-        
-
+    }
     
-
-    
-
-    
-
     public static void close() throws CalcException {
         if (conexion != null) {
             try {
