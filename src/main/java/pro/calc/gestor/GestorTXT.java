@@ -68,6 +68,20 @@ public class GestorTXT {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+
+    public static void borrarHistorial() {
+        try {
+            String ruta = "operaciones/historial.txt";
+            File file = new File(ruta);
+
+            // Si el archivo no existe es creado
+            if (file.exists()) {
+                file.delete();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

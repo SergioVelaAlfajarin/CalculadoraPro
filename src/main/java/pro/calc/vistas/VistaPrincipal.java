@@ -102,6 +102,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         barraMenu = new javax.swing.JMenuBar();
         archivoMenu = new javax.swing.JMenu();
         exportarItem = new javax.swing.JMenuItem();
+        borrarHistorial = new javax.swing.JMenuItem();
         opcionesItem = new javax.swing.JMenuItem();
         salirItem = new javax.swing.JMenuItem();
         avanzadosMenu = new javax.swing.JMenu();
@@ -422,6 +423,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
         archivoMenu.add(exportarItem);
+
+        borrarHistorial.setText("Borrar Historial");
+        borrarHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrarHistorialActionPerformed(evt);
+            }
+        });
+        archivoMenu.add(borrarHistorial);
 
         opcionesItem.setText("Opciones...");
         opcionesItem.setIconTextGap(0);
@@ -817,6 +826,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_exportarItemActionPerformed
 
+    private void borrarHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarHistorialActionPerformed
+       
+        GestorTXT.borrarHistorial();
+    }//GEN-LAST:event_borrarHistorialActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem acercaDeItem;
     private javax.swing.JMenu archivoMenu;
@@ -824,6 +838,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu avanzadosMenu;
     private javax.swing.JMenu ayudaMenu;
     private javax.swing.JMenuBar barraMenu;
+    private javax.swing.JMenuItem borrarHistorial;
     private javax.swing.JButton btn0;
     private javax.swing.JButton btn1;
     private javax.swing.JButton btn2;
