@@ -1,7 +1,6 @@
 package pro.calc.main;
 
 import pro.calc.gestor.GestorBD;
-import pro.calc.gestor.GestorTXT;
 import pro.calc.vistas.VistaPrincipal;
 
 public class Calculadora {
