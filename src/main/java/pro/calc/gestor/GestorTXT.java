@@ -15,29 +15,23 @@ public class GestorTXT {
 
     public static void crearfichero() {
         try {
-            String ruta = "operaciones/operaciones.txt";
-            //Para escribir            
-            // String contenido = "Contenido de ejemplo";
+            String ruta = "operaciones/historial.txt";
             File file = new File(ruta);
-            // Si el archivo no existe es creado
             if (!file.exists()) {
                 file.createNewFile();
             }
-           FileWriter fw = new FileWriter(file, StandardCharsets.UTF_8, true);
+            FileWriter fw = new FileWriter(file, StandardCharsets.UTF_8, true);
             BufferedWriter bw = new BufferedWriter(fw);
-            // bw.write(contenido);
             bw.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    
-    
     public static void exportarFichero() throws FileNotFoundException, IOException {
         //Copiara el archivo en el escritorio
-        File origen = new File("operaciones/operaciones.txt");
-        File destino = new File("../operaciones.txt");
+        File origen = new File("operaciones/historial.txt");
+        File destino = new File("../historial.txt");
 
         try {
             InputStream in = new FileInputStream(origen);
@@ -59,6 +53,22 @@ public class GestorTXT {
     }
 
     public static void escribeOperacion(String resFormatted) {
-        
+        try {
+            String ruta = "operaciones/historial.txt";
+            //Para escribir            
+            String contenido = resFormatted + "\n";
+            File file = new File(ruta);
+            // Si el archivo no existe es creado
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file, StandardCharsets.UTF_8, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(contenido);
+            bw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
