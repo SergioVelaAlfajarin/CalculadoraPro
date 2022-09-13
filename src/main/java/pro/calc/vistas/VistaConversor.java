@@ -68,6 +68,7 @@ public class VistaConversor extends javax.swing.JFrame {
         indicadorLbl = new javax.swing.JLabel();
         cantidadInpt = new javax.swing.JTextField();
         resultadoLbl = new javax.swing.JLabel();
+        convertirBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -123,6 +124,8 @@ public class VistaConversor extends javax.swing.JFrame {
 
         resultadoLbl.setText("Resultado:");
 
+        convertirBtn.setText("Convertir");
+
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
@@ -139,13 +142,15 @@ public class VistaConversor extends javax.swing.JFrame {
                         .addGroup(panelPrincipalLayout.createSequentialGroup()
                             .addGap(15, 15, 15)
                             .addComponent(origenCmbbx, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(resultadoLbl)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(indicadorLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(destinoCmbbx, 0, 305, Short.MAX_VALUE)
-                            .addComponent(cantidadInpt))
-                        .addComponent(visorInpt, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(indicadorLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(destinoCmbbx, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(visorInpt, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelPrincipalLayout.createSequentialGroup()
+                            .addComponent(cantidadInpt, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(convertirBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
@@ -162,7 +167,9 @@ public class VistaConversor extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(indicadorLbl)
                 .addGap(18, 18, 18)
-                .addComponent(cantidadInpt, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(convertirBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cantidadInpt, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(resultadoLbl)
                 .addGap(18, 18, 18)
@@ -247,6 +254,7 @@ public class VistaConversor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel aLbl;
     private javax.swing.JTextField cantidadInpt;
+    private javax.swing.JButton convertirBtn;
     private javax.swing.JComboBox<String> destinoCmbbx;
     private javax.swing.JLabel indicadorLbl;
     private javax.swing.JComboBox<String> origenCmbbx;

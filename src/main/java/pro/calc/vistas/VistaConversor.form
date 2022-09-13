@@ -58,14 +58,16 @@
                               <Component id="origenCmbbx" min="-2" pref="305" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                           <Component id="resultadoLbl" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="indicadorLbl" min="-2" pref="119" max="-2" attributes="0"/>
-                              <Component id="destinoCmbbx" pref="305" max="32767" attributes="0"/>
-                              <Component id="cantidadInpt" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="indicadorLbl" min="-2" pref="119" max="-2" attributes="0"/>
+                          <Component id="destinoCmbbx" min="-2" pref="305" max="-2" attributes="0"/>
                           <Component id="visorInpt" alignment="0" min="-2" pref="305" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="cantidadInpt" min="-2" pref="200" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="convertirBtn" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace pref="14" max="32767" attributes="0"/>
@@ -86,7 +88,10 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="indicadorLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="cantidadInpt" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="convertirBtn" max="32767" attributes="0"/>
+                      <Component id="cantidadInpt" pref="32" max="32767" attributes="0"/>
+                  </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="resultadoLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -196,6 +201,11 @@
         <Component class="javax.swing.JLabel" name="resultadoLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Resultado:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="convertirBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Convertir"/>
           </Properties>
         </Component>
       </SubComponents>
