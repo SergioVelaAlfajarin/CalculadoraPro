@@ -13,6 +13,6 @@ Objetivos de lanzamiento (version 1.0):
  - [ ] funcionalidad a la calculadora. <br/>
  - [x] boton que agrega una ventana dentro de la ventana con algo. <br/>
  - [x] conectar con bbdd y ficheros para guardar todas las operaciones realizadas. <br/>
- - [ ] opcion limpiar todo el historial de operaciones(limpiar archivo txt y bbdd). <br/>
+ - [x] opcion limpiar todo el historial de operaciones(limpiar archivo txt y bbdd). <br/>
  
 <hr/>

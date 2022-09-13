@@ -7,7 +7,9 @@ public class Calculadora {
 
     public static void main(String[] args) {
         //Accedemos a la bbdd
-        GestorBD.init("user", "1234", "operaciones", "jdbc:mysql://127.0.0.1:3306/");
+        try{
+            GestorBD.init("user", "1234", "operaciones", "jdbc:mysql://127.0.0.1:3306/");
+        }catch(Exception ignored){}
         
         int color = 0;
         try {
