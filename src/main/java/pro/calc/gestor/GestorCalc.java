@@ -2,10 +2,11 @@ package pro.calc.gestor;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.Locale;
 import pro.calc.exception.CalcException;
 import pro.calc.modelo.Operacion;
 
-public abstract class GestorCalc {//TODO CAMBIAR ESTE METODO ENTERO
+public abstract class GestorCalc {
 
     private static LinkedList<String> operacionList = new LinkedList<>();
 
@@ -165,4 +166,78 @@ public abstract class GestorCalc {//TODO CAMBIAR ESTE METODO ENTERO
         return listaTemp;
     }
 
+    // CONVERSOR ---------------------------------------------------------------------------------------------------------------------
+    public static String calcularConversion(String origen, String destino, String num) {
+        origen = origen.toLowerCase(Locale.ROOT);
+        destino = destino.toLowerCase(Locale.ROOT);
+
+        return switch (origen) {
+            case "euros" ->
+                convertirEuros(num);
+            case "dolares" ->
+                convertirDolares(num);
+            case "binario" ->
+                convertirBinario(destino, num);
+            case "decimal" ->
+                convertirDecimal(destino, num);
+            case "hexadecimal" ->
+                convertirHexadecimal(destino, num);
+            case "octal" ->
+                convertirOctal(destino, num);
+            default ->
+                null;
+        };
+    }
+
+    private static String convertirEuros(String num) {//-> a dolares
+        return (Double.parseDouble(num) * 1.01) + "";
+    }
+
+    private static String convertirDolares(String num) {//-> a euros
+        return (Double.parseDouble(num) * 0.99) + "";
+    }
+
+    private static String convertirBinario(String destino, String num) {
+        return Integer.toString(Integer.parseInt(num), switch (destino) {
+            case "hexadecimal" ->
+                16;
+            case "octal" ->
+                8;
+            default ->
+                10;
+        }) + "";
+    }
+
+    private static String convertirDecimal(String destino, String num) {
+        return Integer.toString(Integer.parseInt(num), switch (destino) {
+            case "binario" ->
+                2;
+            case "hexadecimal" ->
+                16;
+            default ->
+                8;
+        }) + "";
+    }
+
+    private static String convertirHexadecimal(String destino, String num) {
+        return Integer.toString(Integer.parseInt(num), switch (destino) {
+            case "binario" ->
+                2;
+            case "octal" ->
+                8;
+            default ->
+                10;
+        }) + "";
+    }
+
+    private static String convertirOctal(String destino, String num) {
+        return Integer.toString(Integer.parseInt(num), switch (destino) {
+            case "binario" ->
+                2;
+            case "hexadecimal" ->
+                16;
+            default ->
+                10;
+        }) + "";
+    }
 }

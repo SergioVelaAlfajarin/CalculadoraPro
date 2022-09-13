@@ -2,9 +2,12 @@ package pro.calc.vistas;
 
 import java.awt.Color;
 import java.io.File;
+import java.util.Locale;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import pro.calc.exception.CalcException;
+import pro.calc.gestor.GestorCalc;
 
 public class VistaConversor extends javax.swing.JFrame {
 
@@ -20,7 +23,6 @@ public class VistaConversor extends javax.swing.JFrame {
         cambiaColor(c);
     }
 
-    
     private void cambiaColor(int c) {
         if (c == 1) {
             getContentPane().setBackground(Color.RED);
@@ -42,7 +44,7 @@ public class VistaConversor extends javax.swing.JFrame {
             panelPrincipal.setBackground(Color.BLUE);
         }
     }
-    
+
     private void setIconImage() {
         File f = new File("../resources/icon.png");
         if (!f.exists()) {
@@ -125,6 +127,11 @@ public class VistaConversor extends javax.swing.JFrame {
         resultadoLbl.setText("Resultado:");
 
         convertirBtn.setText("Convertir");
+        convertirBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                convertirBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
@@ -210,30 +217,45 @@ public class VistaConversor extends javax.swing.JFrame {
     }//GEN-LAST:event_cantidadInptActionPerformed
 
     private void destinoCmbbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_destinoCmbbxActionPerformed
-        if(destinoCmbbx.getSelectedIndex() != 0){
+        if (destinoCmbbx.getSelectedIndex() != 0) {
             cantidadInpt.setEditable(true);
-        }else{
+        } else {
             cantidadInpt.setText("");
             cantidadInpt.setEditable(false);
         }
     }//GEN-LAST:event_destinoCmbbxActionPerformed
 
+    private void convertirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_convertirBtnActionPerformed
+        String origen = origenCmbbx.getSelectedItem().toString();
+        String destino = destinoCmbbx.getSelectedItem().toString();
+
+        try {
+            String numTxt = cantidadInpt.getText();
+            String resultado = GestorCalc.calcularConversion(origen, destino, numTxt);
+            visorInpt.setText(resultado);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_convertirBtnActionPerformed
+
     private void cambiarComboDestino(Integer selectedItem) {
         switch (selectedItem) {
-            case 0 ->
+            case 0 -> {
                 rellenarComboDestino();
+                visorInpt.setText("");
+            }
             case 1 ->
                 rellenarComboDestino("Selecciona...", "Dolares");
             case 2 ->
-                rellenarComboDestino("Selecciona...","Euros");
+                rellenarComboDestino("Selecciona...", "Euros");
             case 3 ->
-                rellenarComboDestino("Selecciona...","Decimal", "Octal", "Hexadecimal");
+                rellenarComboDestino("Selecciona...", "Decimal", "Octal", "Hexadecimal");
             case 4 ->
-                rellenarComboDestino("Selecciona...","Selecciona...","Binario", "Octal", "Hexadecimal");
+                rellenarComboDestino("Selecciona...", "Selecciona...", "Binario", "Octal", "Hexadecimal");
             case 5 ->
-                rellenarComboDestino("Selecciona...","Decimal", "Octal", "Binario");
+                rellenarComboDestino("Selecciona...", "Decimal", "Octal", "Binario");
             case 6 ->
-                rellenarComboDestino("Selecciona...","Decimal", "Binario", "Hexadecimal");
+                rellenarComboDestino("Selecciona...", "Decimal", "Binario", "Hexadecimal");
         }
     }
 

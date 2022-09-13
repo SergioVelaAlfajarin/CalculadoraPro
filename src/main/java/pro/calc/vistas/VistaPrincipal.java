@@ -833,6 +833,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
         try {
             GestorTXT.borrarHistorial();
             GestorBD.borrarBBDD();
+            
+            JOptionPane.showMessageDialog(this, "Eliminado satisfactoriamente.");
         } catch (Exception ignored) {}
 
     }//GEN-LAST:event_borrarHistorialActionPerformed
