@@ -19,39 +19,45 @@ public class VistaPrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
     }
 
-    private final int cambia;
+    private int cambia;
 
     public VistaPrincipal(int c) {
         initComponents();
         setIconImage();
         setVisible(true);
         setLocationRelativeTo(null);
-        int color;
-        color = c;
-        cambia = c;
-        cambiaColor(c);
         visorInpt.setText("5+2*(73/(54-33))-2");
     }
 
-    private void cambiaColor(int c) {
-        if (c == 1) {
-            getContentPane().setBackground(Color.RED);
-            panelPrincipal.setBackground(Color.RED);
-        } else if (c == 2) {
-            getContentPane().setBackground(Color.GRAY);
-            panelPrincipal.setBackground(Color.GRAY);
-        } else if (c == 3) {
-            getContentPane().setBackground(Color.WHITE);
-            panelPrincipal.setBackground(Color.WHITE);
-        } else if (c == 4) {
-            getContentPane().setBackground(Color.GREEN);
-            panelPrincipal.setBackground(Color.GREEN);
-        } else if (c == 5) {
-            getContentPane().setBackground(Color.YELLOW);
-            panelPrincipal.setBackground(Color.YELLOW);
-        } else if (c == 6) {
-            getContentPane().setBackground(Color.BLUE);
-            panelPrincipal.setBackground(Color.BLUE);
+    public void cambiaColor(int c) {
+        cambia = c;
+        switch (c) {
+            case 1 -> {
+                getContentPane().setBackground(Color.RED);
+                panelPrincipal.setBackground(Color.RED);
+            }
+            case 2 -> {
+                getContentPane().setBackground(Color.GRAY);
+                panelPrincipal.setBackground(Color.GRAY);
+            }
+            case 3 -> {
+                getContentPane().setBackground(Color.WHITE);
+                panelPrincipal.setBackground(Color.WHITE);
+            }
+            case 4 -> {
+                getContentPane().setBackground(Color.GREEN);
+                panelPrincipal.setBackground(Color.GREEN);
+            }
+            case 5 -> {
+                getContentPane().setBackground(Color.YELLOW);
+                panelPrincipal.setBackground(Color.YELLOW);
+            }
+            case 6 -> {
+                getContentPane().setBackground(Color.BLUE);
+                panelPrincipal.setBackground(Color.BLUE);
+            }
+            default -> {
+            }
         }
     }
 
@@ -110,7 +116,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         conversorItem = new javax.swing.JMenuItem();
         ayudaMenu = new javax.swing.JMenu();
         acercaDeItem = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        opinionItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calculadora Pro");
@@ -526,13 +532,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
         });
         ayudaMenu.add(acercaDeItem);
 
-        jMenuItem1.setText("Danos tu opinión");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        opinionItem.setText("Danos tu opinión");
+        opinionItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                opinionItemActionPerformed(evt);
             }
         });
-        ayudaMenu.add(jMenuItem1);
+        ayudaMenu.add(opinionItem);
 
         barraMenu.add(ayudaMenu);
 
@@ -576,12 +582,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         try {
             String res = GestorCalc.calcularOperacion(operacion);
-            String resFormatted =  String.format("%s=%s", operacion, res);
+            String resFormatted = String.format("%s=%s", operacion, res);
             visorInpt.setText(resFormatted);
-            
+
             GestorTXT.escribeOperacion(resFormatted);
             GestorBD.escribeOperacion(resFormatted);
-                    
+
             numAnterior = res;
             calculado = true;
         } catch (CalcException e) {
@@ -725,15 +731,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void salirItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirItemActionPerformed
         dispose();
-        //cerrar bbdd
+       // GestorBD.close();
         System.exit(0);
     }//GEN-LAST:event_salirItemActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-       //Al salir borrara el fichero creado y aparecera vacio
-        GestorTXT.crearfichero();
         dispose();
-        //cerrar bbdd
+        //GestorBD.close();
         System.exit(0);
     }//GEN-LAST:event_formWindowClosed
 
@@ -795,15 +799,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void opcionesItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionesItemActionPerformed
         setVisible(false);
-        var v = new VistaOpciones(this);
+        var v = new VistaOpciones(this, cambia);
 
     }//GEN-LAST:event_opcionesItemActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void opinionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opinionItemActionPerformed
 
         setVisible(false);
         var v = new VistaDanosTuOpinion(this, cambia);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_opinionItemActionPerformed
 
     private void exportarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportarItemActionPerformed
         try {
@@ -847,8 +851,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem cuboItem;
     private javax.swing.JMenuItem esferaItem;
     private javax.swing.JMenuItem exportarItem;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem opcionesItem;
+    private javax.swing.JMenuItem opinionItem;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JMenuItem salirItem;
     private javax.swing.JMenuItem trianguloItem;
