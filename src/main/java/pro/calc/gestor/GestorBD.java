@@ -52,13 +52,23 @@ public class GestorBD {
     private static int sumarID() throws CalcException {
         PreparedStatement ps = null;
         try {
-            ps = conexion.prepareStatement("SELECT * FROM pedidos;");
+            ps = conexion.prepareStatement("SELECT * FROM operaciones;");
             ResultSet rs = ps.executeQuery();
-            int rows = 0;
+            int rows = 1;
             while (rs.next()) {
                 rows++;
             }
             return rows;
+        } catch (SQLException ex) {
+            throw new CalcException(ex.getMessage());
+        }
+    }
+
+    public static void borrarBBDD() throws CalcException {
+        PreparedStatement ps = null;
+        try {
+            ps = conexion.prepareStatement("DELETE FROM operaciones;");
+            ps.executeUpdate();
         } catch (SQLException ex) {
             throw new CalcException(ex.getMessage());
         }
