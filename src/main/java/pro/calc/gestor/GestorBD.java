@@ -3,6 +3,7 @@ package pro.calc.gestor;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import pro.calc.exception.CalcException;
 
@@ -33,10 +34,11 @@ public class GestorBD {
             throw new CalcException("La base de datos no esta inicializada.");
         }
         try {
-            PreparedStatement ps = conexion.prepareStatement("INSERT INTO operaciones (operacion, resultado) VALUES(?,?);");
+            PreparedStatement ps = conexion.prepareStatement("INSERT INTO operaciones (id, operacion, resultado) VALUES(?,?,?);");
 
-            ps.setString(1, array[0]);
-            ps.setString(2, array[1]);
+            ps.setInt(1, sumarID());
+            ps.setString(2, array[0]);
+            ps.setString(3, array[1]);
 
             int resultado = ps.executeUpdate(); //guarda el resultado
             ps.close(); //cierra el preparedstatement
@@ -47,7 +49,32 @@ public class GestorBD {
 
     }
 
-    public void close() throws CalcException {
+    private static int sumarID() throws CalcException {
+        if (conexion == null) {
+            throw new CalcException("La base de datos no esta inicializada.");
+        }
+        PreparedStatement ps = null;
+        try {
+            ps = conexion.prepareStatement("SELECT * FROM pedidos;");
+            ResultSet rs = ps.executeQuery();
+            int rows = 0;
+            int clmns = rs.getMetaData().getColumnCount();
+            while (rs.next()) {
+                rows++;
+            }
+            return rows;
+        } catch (SQLException ex) {
+            throw new CalcException(ex.getMessage());
+        }
+        
+
+    
+
+    
+
+    
+
+    public static void close() throws CalcException {
         if (conexion != null) {
             try {
                 conexion.close();
