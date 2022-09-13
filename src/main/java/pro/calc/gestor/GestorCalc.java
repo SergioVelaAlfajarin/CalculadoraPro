@@ -205,7 +205,7 @@ public abstract class GestorCalc {
                 8;
             default ->
                 10;
-        }) + "";
+        });
     }
 
     private static String convertirDecimal(String destino, String num) {
@@ -216,7 +216,7 @@ public abstract class GestorCalc {
                 16;
             default ->
                 8;
-        }) + "";
+        });
     }
 
     private static String convertirHexadecimal(String destino, String num) {
@@ -227,7 +227,7 @@ public abstract class GestorCalc {
                 8;
             default ->
                 10;
-        }) + "";
+        });
     }
 
     private static String convertirOctal(String destino, String num) {
@@ -238,6 +238,6 @@ public abstract class GestorCalc {
                 16;
             default ->
                 10;
-        }) + "";
+        });
     }
 }
