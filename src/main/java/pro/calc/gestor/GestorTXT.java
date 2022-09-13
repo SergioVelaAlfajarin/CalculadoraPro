@@ -49,7 +49,6 @@ public class GestorTXT {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-
     }
 
     public static void escribeOperacion(String resFormatted) {
