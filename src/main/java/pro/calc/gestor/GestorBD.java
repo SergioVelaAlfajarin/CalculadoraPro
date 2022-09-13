@@ -63,7 +63,17 @@ public class GestorBD {
             throw new CalcException(ex.getMessage());
         }
     }
-    
+
+    public static void borrarBBDD() throws CalcException {
+        PreparedStatement ps = null;
+        try {
+            ps = conexion.prepareStatement("DELETE FROM operaciones;");
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            throw new CalcException(ex.getMessage());
+        }
+    }
+
     public static void close() throws CalcException {
         if (conexion != null) {
             try {

@@ -743,7 +743,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void salirItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirItemActionPerformed
         dispose();
-       // GestorBD.close();
+        // GestorBD.close();
         System.exit(0);
     }//GEN-LAST:event_salirItemActionPerformed
 
@@ -830,8 +830,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_exportarItemActionPerformed
 
     private void borrarHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarHistorialActionPerformed
-       
-        GestorTXT.borrarHistorial();
+        try {
+            GestorTXT.borrarHistorial();
+            GestorBD.borrarBBDD();
+        } catch (Exception ignored) {}
+
     }//GEN-LAST:event_borrarHistorialActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
