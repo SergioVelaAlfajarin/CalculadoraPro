@@ -1,6 +1,8 @@
 package pro.calc.vistas;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -14,6 +16,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private boolean calculado = false;
     private String numAnterior;
+    private boolean maximizada = false;
+
+    private Dimension sizeMaximizado, sizeMinimizado;
 
     public void muestraWarning(Exception e) {
         JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
@@ -26,6 +31,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         setIconImage();
         setVisible(true);
         setLocationRelativeTo(null);
+        setSizesVista();
         //visorInpt.setText("5+2*(73/(54-33))-2");
     }
 
@@ -102,7 +108,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
         barraMenu = new javax.swing.JMenuBar();
         archivoMenu = new javax.swing.JMenu();
         exportarItem = new javax.swing.JMenuItem();
-        borrarHistorial = new javax.swing.JMenuItem();
+        borrarHistorialItem = new javax.swing.JMenuItem();
+        maximizarItem = new javax.swing.JMenuItem();
         opcionesItem = new javax.swing.JMenuItem();
         salirItem = new javax.swing.JMenuItem();
         avanzadosMenu = new javax.swing.JMenu();
@@ -424,13 +431,21 @@ public class VistaPrincipal extends javax.swing.JFrame {
         });
         archivoMenu.add(exportarItem);
 
-        borrarHistorial.setText("Borrar Historial");
-        borrarHistorial.addActionListener(new java.awt.event.ActionListener() {
+        borrarHistorialItem.setText("Borrar Historial");
+        borrarHistorialItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                borrarHistorialActionPerformed(evt);
+                borrarHistorialItemActionPerformed(evt);
             }
         });
-        archivoMenu.add(borrarHistorial);
+        archivoMenu.add(borrarHistorialItem);
+
+        maximizarItem.setText("Maximizar...");
+        maximizarItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maximizarItemActionPerformed(evt);
+            }
+        });
+        archivoMenu.add(maximizarItem);
 
         opcionesItem.setText("Opciones...");
         opcionesItem.setIconTextGap(0);
@@ -594,11 +609,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
             String resFormatted = String.format("%s=%s", operacion, res);
             visorInpt.setText(resFormatted);
 
-            try{
-                 GestorTXT.escribeOperacion(resFormatted);
-                 GestorBD.escribeOperacion(resFormatted);
-            }catch(Exception ignored){}
-          
+            try {
+                GestorTXT.escribeOperacion(resFormatted);
+                GestorBD.escribeOperacion(resFormatted);
+            } catch (Exception ignored) {
+            }
 
             numAnterior = res;
             calculado = true;
@@ -829,15 +844,21 @@ public class VistaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_exportarItemActionPerformed
 
-    private void borrarHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarHistorialActionPerformed
+    private void borrarHistorialItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarHistorialItemActionPerformed
         try {
             GestorTXT.borrarHistorial();
             GestorBD.borrarBBDD();
-            
-            JOptionPane.showMessageDialog(this, "Eliminado satisfactoriamente.");
-        } catch (Exception ignored) {}
 
-    }//GEN-LAST:event_borrarHistorialActionPerformed
+            JOptionPane.showMessageDialog(this, "Eliminado satisfactoriamente.");
+        } catch (Exception ignored) {
+        }
+
+    }//GEN-LAST:event_borrarHistorialItemActionPerformed
+
+    private void maximizarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maximizarItemActionPerformed
+        maximizada = !maximizada;
+        cambiarVista();
+    }//GEN-LAST:event_maximizarItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem acercaDeItem;
@@ -846,7 +867,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu avanzadosMenu;
     private javax.swing.JMenu ayudaMenu;
     private javax.swing.JMenuBar barraMenu;
-    private javax.swing.JMenuItem borrarHistorial;
+    private javax.swing.JMenuItem borrarHistorialItem;
     private javax.swing.JButton btn0;
     private javax.swing.JButton btn1;
     private javax.swing.JButton btn2;
@@ -874,6 +895,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem cuboItem;
     private javax.swing.JMenuItem esferaItem;
     private javax.swing.JMenuItem exportarItem;
+    private javax.swing.JMenuItem maximizarItem;
     private javax.swing.JMenuItem opcionesItem;
     private javax.swing.JMenuItem opinionItem;
     private javax.swing.JPanel panelPrincipal;
@@ -882,4 +904,23 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField visorInpt;
     private javax.swing.JMenu volumenMenu;
     // End of variables declaration//GEN-END:variables
+
+    private void cambiarVista() {
+        if (maximizada) {
+            maximizarItem.setText("Minimizar...");
+            setSize(sizeMaximizado);
+            setUndecorated(true);
+            setLocationRelativeTo(null);
+        } else {
+            maximizarItem.setText("Maximizar...");
+            setSize(sizeMinimizado);
+            setUndecorated(false);
+            setLocationRelativeTo(null);
+        }
+    }
+
+    private void setSizesVista() {
+        sizeMaximizado = Toolkit.getDefaultToolkit().getScreenSize();
+        sizeMinimizado = new Dimension(296, 412);
+    }
 }
