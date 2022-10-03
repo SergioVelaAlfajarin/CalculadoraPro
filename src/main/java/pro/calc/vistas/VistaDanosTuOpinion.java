@@ -6,13 +6,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import pro.calc.exception.CalcException;
-
+import pro.calc.vistas.principales.VistaPrincipal;
 
 public class VistaDanosTuOpinion extends javax.swing.JFrame {
-    
-    JFrame ventana;
-    
-    public VistaDanosTuOpinion(JFrame v,int c) {
+
+    private final VistaPrincipal ventana;
+
+    public VistaDanosTuOpinion(VistaPrincipal v, int c) {
         initComponents();
         setTitle("Danos tu opinion");
         setVisible(true);
@@ -22,16 +22,16 @@ public class VistaDanosTuOpinion extends javax.swing.JFrame {
         setIconImage();
         cambiaColor(c);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        panelPrincipal = new javax.swing.JPanel();
+        enviarBtn = new javax.swing.JButton();
+        opinionPane = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
+        tituloLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -40,51 +40,51 @@ public class VistaDanosTuOpinion extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Enviar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        enviarBtn.setText("Enviar");
+        enviarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                enviarBtnActionPerformed(evt);
             }
         });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setText(" \n");
-        jScrollPane1.setViewportView(jTextArea1);
+        opinionPane.setViewportView(jTextArea1);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Introduce aqui tu opinion");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        tituloLbl.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        tituloLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tituloLbl.setText("Introduce aqui tu opinion");
+        tituloLbl.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
+        panelPrincipal.setLayout(panelPrincipalLayout);
+        panelPrincipalLayout.setHorizontalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(opinionPane))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addGap(197, 197, 197)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(enviarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
                 .addGap(0, 199, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tituloLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(172, 172, 172))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelPrincipalLayout.setVerticalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                .addComponent(tituloLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(opinionPane, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(enviarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
 
@@ -93,41 +93,47 @@ public class VistaDanosTuOpinion extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cambiaColor(int c) {
-    if (c == 1) {
-        getContentPane().setBackground(Color.RED);
-        jPanel1.setBackground(Color.RED);
-    } else if (c == 2) {
-        getContentPane().setBackground(Color.GRAY);
-        jPanel1.setBackground(Color.GRAY);
-    } else if (c == 3) {
-        getContentPane().setBackground(Color.WHITE);
-        jPanel1.setBackground(Color.WHITE);
-    } else if (c == 4) {
-        getContentPane().setBackground(Color.GREEN);
-        jPanel1.setBackground(Color.GREEN);
-    } else if (c == 5) {
-        getContentPane().setBackground(Color.YELLOW);
-        jPanel1.setBackground(Color.YELLOW);
-    } else if (c == 6) {
-        getContentPane().setBackground(Color.BLUE);
-        jPanel1.setBackground(Color.BLUE);
+        switch (c) {
+            case 1 -> {
+                getContentPane().setBackground(Color.RED);
+                panelPrincipal.setBackground(Color.RED);
+            }
+            case 2 -> {
+                getContentPane().setBackground(Color.GRAY);
+                panelPrincipal.setBackground(Color.GRAY);
+            }
+            case 3 -> {
+                getContentPane().setBackground(Color.WHITE);
+                panelPrincipal.setBackground(Color.WHITE);
+            }
+            case 4 -> {
+                getContentPane().setBackground(Color.GREEN);
+                panelPrincipal.setBackground(Color.GREEN);
+            }
+            case 5 -> {
+                getContentPane().setBackground(Color.YELLOW);
+                panelPrincipal.setBackground(Color.YELLOW);
+            }
+            case 6 -> {
+                getContentPane().setBackground(Color.BLUE);
+                panelPrincipal.setBackground(Color.BLUE);
+            }
+        }
     }
-}
-    
-    
-     private void setIconImage() {
+
+    private void setIconImage() {
         File f = new File("../resources/icon.png");
         if (!f.exists()) {
             f = new File("resources/icon.png");
@@ -138,17 +144,17 @@ public class VistaDanosTuOpinion extends javax.swing.JFrame {
         ImageIcon img = new ImageIcon(f.getAbsolutePath());
         setIconImage(img.getImage());
     }
-    
-    
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
+
+    private void enviarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarBtnActionPerformed
+
         if (jTextArea1.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No se ha introducido ningun texto.");
         } else {
             JOptionPane.showMessageDialog(null, "Se ha enviado satisfactoriamente.");
             jTextArea1.setText("");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_enviarBtnActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         dispose();
@@ -157,10 +163,10 @@ public class VistaDanosTuOpinion extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton enviarBtn;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane opinionPane;
+    private javax.swing.JPanel panelPrincipal;
+    private javax.swing.JLabel tituloLbl;
     // End of variables declaration//GEN-END:variables
 }

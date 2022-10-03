@@ -1,16 +1,17 @@
 package pro.calc.main;
 
 import pro.calc.gestor.GestorBD;
-import pro.calc.vistas.VistaPrincipal;
+import pro.calc.vistas.principales.VistaPrincipalMin;
 
 public class Calculadora {
 
     public static void main(String[] args) {
         //Accedemos a la bbdd
-        try{
+        try {
             GestorBD.init("user", "1234", "operaciones", "jdbc:mysql://127.0.0.1:3306/");
-        }catch(Exception ignored){}
-        
+        } catch (Exception ignored) {
+        }
+
         int color = 0;
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -22,6 +23,6 @@ public class Calculadora {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             System.out.println(ex.getMessage());
         }
-        var v = new VistaPrincipal(color);
+        new VistaPrincipalMin();
     }
 }

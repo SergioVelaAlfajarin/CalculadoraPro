@@ -1,31 +1,37 @@
-package pro.calc.vistas;
+package pro.calc.vistas.principales;
 
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import pro.calc.exception.CalcException;
 import pro.calc.gestor.*;
+import pro.calc.vistas.VistaAcercaDe;
+import pro.calc.vistas.VistaConversor;
+import pro.calc.vistas.VistaDanosTuOpinion;
+import pro.calc.vistas.VistaOpciones;
 
-public class VistaPrincipal extends javax.swing.JFrame {
+public abstract class VistaPrincipal extends javax.swing.JFrame {
 
     private boolean calculado = false;
     private String numAnterior;
+    private int cambia;
 
-    public void muestraWarning(Exception e) {
+    private void muestraWarning(Exception e) {
         JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
     }
 
-    private int cambia;
-
-    public VistaPrincipal(int c) {
+    protected VistaPrincipal() {
         initComponents();
         setIconImage();
-        setVisible(true);
+    }
+
+    protected VistaPrincipal(int c) {
+        initComponents();
+        setIconImage();
         setLocationRelativeTo(null);
+        //setVisible(true);
         //visorInpt.setText("5+2*(73/(54-33))-2");
     }
 
@@ -594,11 +600,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
             String resFormatted = String.format("%s=%s", operacion, res);
             visorInpt.setText(resFormatted);
 
-            try{
-                 GestorTXT.escribeOperacion(resFormatted);
-                 GestorBD.escribeOperacion(resFormatted);
-            }catch(Exception ignored){}
-          
+            try {
+                GestorTXT.escribeOperacion(resFormatted);
+                GestorBD.escribeOperacion(resFormatted);
+            } catch (Exception ignored) {
+            }
 
             numAnterior = res;
             calculado = true;
@@ -833,9 +839,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         try {
             GestorTXT.borrarHistorial();
             GestorBD.borrarBBDD();
-            
+
             JOptionPane.showMessageDialog(this, "Eliminado satisfactoriamente.");
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
     }//GEN-LAST:event_borrarHistorialActionPerformed
 
