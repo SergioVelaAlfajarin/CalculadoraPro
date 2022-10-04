@@ -1,6 +1,7 @@
 package pro.calc.vistas.principales;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.ImageIcon;
@@ -22,15 +23,18 @@ public abstract class VistaPrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
     }
 
-    protected VistaPrincipal() {
+    protected VistaPrincipal(Dimension size, boolean undecorated) {
         initComponents();
         setIconImage();
-    }
 
-    protected VistaPrincipal(int c) {
-        initComponents();
-        setIconImage();
+        setPreferredSize(size);
+        setUndecorated(undecorated);
+
+
+        pack();
+        
         setLocationRelativeTo(null);
+        setVisible(true);
         //setVisible(true);
         //visorInpt.setText("5+2*(73/(54-33))-2");
     }
@@ -108,6 +112,7 @@ public abstract class VistaPrincipal extends javax.swing.JFrame {
         barraMenu = new javax.swing.JMenuBar();
         archivoMenu = new javax.swing.JMenu();
         exportarItem = new javax.swing.JMenuItem();
+        cambiarSizeItem = new javax.swing.JMenuItem();
         borrarHistorial = new javax.swing.JMenuItem();
         opcionesItem = new javax.swing.JMenuItem();
         salirItem = new javax.swing.JMenuItem();
@@ -430,6 +435,14 @@ public abstract class VistaPrincipal extends javax.swing.JFrame {
         });
         archivoMenu.add(exportarItem);
 
+        cambiarSizeItem.setText("Cambiar Tamaño...");
+        cambiarSizeItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cambiarSizeItemActionPerformed(evt);
+            }
+        });
+        archivoMenu.add(cambiarSizeItem);
+
         borrarHistorial.setText("Borrar Historial");
         borrarHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -569,8 +582,6 @@ public abstract class VistaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cuadradoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuadradoItemActionPerformed
@@ -846,6 +857,18 @@ public abstract class VistaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_borrarHistorialActionPerformed
 
+    private void cambiarSizeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarSizeItemActionPerformed
+        this.dispose();
+        
+        if(esMaximizado()){
+            new VistaPrincipalMin();
+        }else{
+            new VistaPrincipalMax();
+        }
+    }//GEN-LAST:event_cambiarSizeItemActionPerformed
+
+    protected abstract boolean esMaximizado();
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem acercaDeItem;
     private javax.swing.JMenu archivoMenu;
@@ -874,6 +897,7 @@ public abstract class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnParentesis2;
     private javax.swing.JButton btnResta;
     private javax.swing.JButton btnSuma;
+    private javax.swing.JMenuItem cambiarSizeItem;
     private javax.swing.JMenuItem cilindroItem;
     private javax.swing.JMenuItem circunferenciaItem;
     private javax.swing.JMenuItem conversorItem;
@@ -889,4 +913,5 @@ public abstract class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField visorInpt;
     private javax.swing.JMenu volumenMenu;
     // End of variables declaration//GEN-END:variables
+
 }

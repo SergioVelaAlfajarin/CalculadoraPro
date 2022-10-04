@@ -1,6 +1,7 @@
 package pro.calc.main;
 
 import pro.calc.gestor.GestorBD;
+import pro.calc.vistas.principales.VistaPrincipalMax;
 import pro.calc.vistas.principales.VistaPrincipalMin;
 
 public class Calculadora {
@@ -12,7 +13,6 @@ public class Calculadora {
         } catch (Exception ignored) {
         }
 
-        int color = 0;
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
@@ -23,6 +23,6 @@ public class Calculadora {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             System.out.println(ex.getMessage());
         }
-        new VistaPrincipalMin();
+        final var v = new VistaPrincipalMax();
     }
 }

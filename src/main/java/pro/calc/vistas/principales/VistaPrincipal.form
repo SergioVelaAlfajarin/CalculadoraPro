@@ -18,6 +18,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exportarItemActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="cambiarSizeItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cambiar Tama&#xf1;o..."/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cambiarSizeItemActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="borrarHistorial">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Borrar Historial"/>
