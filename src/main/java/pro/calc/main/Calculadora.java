@@ -1,16 +1,18 @@
 package pro.calc.main;
 
+import pro.calc.exception.CalcException;
 import pro.calc.gestor.GestorBD;
-import pro.calc.vistas.principales.VistaPrincipalMax;
-import pro.calc.vistas.principales.VistaPrincipalMin;
+import pro.calc.vistas.principales.*;
 
 public class Calculadora {
+
+    private static VistaPrincipal vistaMin, vistaMax;
 
     public static void main(String[] args) {
         //Accedemos a la bbdd
         try {
             GestorBD.init("user", "1234", "operaciones", "jdbc:mysql://127.0.0.1:3306/");
-        } catch (Exception ignored) {
+        } catch (CalcException ignored) {
         }
 
         try {
@@ -23,6 +25,20 @@ public class Calculadora {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             System.out.println(ex.getMessage());
         }
-        final var v = new VistaPrincipalMax();
+
+        vistaMin = new VistaPrincipalMin();
+        vistaMax = new VistaPrincipalMax();
+        
+        setVistaMin();
+    }
+
+    public static void setVistaMax() {
+        vistaMin.setVisible(false);
+        vistaMax.setVisible(true);
+    }
+
+    public static void setVistaMin() {
+        vistaMin.setVisible(true);
+        vistaMax.setVisible(false);
     }
 }

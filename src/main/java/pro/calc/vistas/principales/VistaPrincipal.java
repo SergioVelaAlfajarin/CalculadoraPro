@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import pro.calc.exception.CalcException;
 import pro.calc.gestor.*;
+import pro.calc.main.Calculadora;
 import pro.calc.vistas.VistaAcercaDe;
 import pro.calc.vistas.VistaConversor;
 import pro.calc.vistas.VistaDanosTuOpinion;
@@ -34,7 +35,6 @@ public abstract class VistaPrincipal extends javax.swing.JFrame {
         pack();
         
         setLocationRelativeTo(null);
-        setVisible(true);
         //setVisible(true);
         //visorInpt.setText("5+2*(73/(54-33))-2");
     }
@@ -858,12 +858,10 @@ public abstract class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_borrarHistorialActionPerformed
 
     private void cambiarSizeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarSizeItemActionPerformed
-        this.dispose();
-        
         if(esMaximizado()){
-            new VistaPrincipalMin();
+            Calculadora.setVistaMin();
         }else{
-            new VistaPrincipalMax();
+            Calculadora.setVistaMax();
         }
     }//GEN-LAST:event_cambiarSizeItemActionPerformed
 
