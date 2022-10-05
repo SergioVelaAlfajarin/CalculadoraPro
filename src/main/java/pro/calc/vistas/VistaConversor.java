@@ -8,12 +8,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import pro.calc.exception.CalcException;
 import pro.calc.gestor.GestorCalc;
+import pro.calc.vistas.principales.VistaPrincipal;
 
 public class VistaConversor extends javax.swing.JFrame {
 
-    private JFrame ventana;
+    private final VistaPrincipal ventana;
 
-    public VistaConversor(JFrame v, int c) {
+    public VistaConversor(VistaPrincipal v, int c) {
         initComponents();
         setIconImage();
         setLocationRelativeTo(null);
@@ -24,24 +25,31 @@ public class VistaConversor extends javax.swing.JFrame {
     }
 
     private void cambiaColor(int c) {
-        if (c == 1) {
-            getContentPane().setBackground(Color.RED);
-            panelPrincipal.setBackground(Color.RED);
-        } else if (c == 2) {
-            getContentPane().setBackground(Color.GRAY);
-            panelPrincipal.setBackground(Color.GRAY);
-        } else if (c == 3) {
-            getContentPane().setBackground(Color.WHITE);
-            panelPrincipal.setBackground(Color.WHITE);
-        } else if (c == 4) {
-            getContentPane().setBackground(Color.GREEN);
-            panelPrincipal.setBackground(Color.GREEN);
-        } else if (c == 5) {
-            getContentPane().setBackground(Color.YELLOW);
-            panelPrincipal.setBackground(Color.YELLOW);
-        } else if (c == 6) {
-            getContentPane().setBackground(Color.BLUE);
-            panelPrincipal.setBackground(Color.BLUE);
+        switch (c) {
+            case 1 -> {
+                getContentPane().setBackground(Color.RED);
+                panelPrincipal.setBackground(Color.RED);
+            }
+            case 2 -> {
+                getContentPane().setBackground(Color.GRAY);
+                panelPrincipal.setBackground(Color.GRAY);
+            }
+            case 3 -> {
+                getContentPane().setBackground(Color.WHITE);
+                panelPrincipal.setBackground(Color.WHITE);
+            }
+            case 4 -> {
+                getContentPane().setBackground(Color.GREEN);
+                panelPrincipal.setBackground(Color.GREEN);
+            }
+            case 5 -> {
+                getContentPane().setBackground(Color.YELLOW);
+                panelPrincipal.setBackground(Color.YELLOW);
+            }
+            case 6 -> {
+                getContentPane().setBackground(Color.BLUE);
+                panelPrincipal.setBackground(Color.BLUE);
+            }
         }
     }
 
@@ -201,7 +209,6 @@ public class VistaConversor extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         ventana.setVisible(true);
         dispose();
-
     }//GEN-LAST:event_formWindowClosed
 
     private void visorInptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visorInptActionPerformed
