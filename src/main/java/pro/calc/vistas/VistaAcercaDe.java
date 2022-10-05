@@ -98,7 +98,7 @@ public class VistaAcercaDe extends javax.swing.JFrame {
         descripcion3Lbl.setText("simples calculos avanzados mientras utilizan la calculadora.");
 
         versionLbl.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        versionLbl.setText("Versión:   1.0");
+        versionLbl.setText("Versión:   1.1");
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);

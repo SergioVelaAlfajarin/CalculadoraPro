@@ -129,7 +129,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic Medium" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Versi&#xf3;n:   1.0"/>
+            <Property name="text" type="java.lang.String" value="Versi&#xf3;n:   1.1"/>
           </Properties>
         </Component>
       </SubComponents>
